@@ -1,4 +1,4 @@
-<h1 align="center">BCW · sito</h1>
+<h1 align="center">BCW: Classeviva, in Material Design</h1>
 
 <p align="center">
   <strong>La pagina di <a href="https://github.com/kubos5/BCW">BCW</a> e il suo supporto, in Material 3 Expressive</strong>
