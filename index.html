@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="it" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>BCW · Il registro Classeviva, finalmente bello</title>
+  <meta name="description" content="BCW è un client open source per il registro elettronico Classeviva, in stile Material 3 Expressive: voti, compiti, orario, widget e attività in diretta. Per iPhone, iPad, web e Android.">
+  <meta name="theme-color" content="#fff8f6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#130d0b" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:title" content="BCW · Il registro Classeviva, finalmente bello">
+  <meta property="og:description" content="Voti, compiti, orario e comunicazioni in un'app veloce, chiara e bella da usare, in Material 3 Expressive. Open source, per iPhone, iPad, web e Android.">
+  <meta property="og:image" content="https://kubos5.github.io/BCW-lp/assets/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/fonts/GoogleSansFlex-latin-wght-ROND.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script>
+    // Prima del primo disegno: tema chiaro/scuro e colore scelti (salvati nel browser) e, alla prima
+    // visita della sessione, la comparsa dei colori con il cerchio (come nell'introduzione dell'app).
+    (function () {
+      var d = document.documentElement;
+      d.classList.remove('no-js');
+      try {
+        var mode = localStorage.getItem('bcw-lp.mode');
+        if (mode === 'light' || mode === 'dark') d.setAttribute('data-theme', mode);
+        var theme = JSON.parse(localStorage.getItem('bcw-lp.accent') || 'null');
+        if (theme && theme.css) {
+          var style = document.createElement('style');
+          style.id = 'accent-theme';
+          style.textContent = theme.css;
+          document.head.appendChild(style);
+        }
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !sessionStorage.getItem('bcw-lp.intro')) {
+          d.classList.add('intro');
+          sessionStorage.setItem('bcw-lp.intro', '1');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <script type="module" src="assets/js/site.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Vai al contenuto</a>
+
+  <header class="topbar">
+    <a class="brand-pill floating" href="./" aria-label="BCW, pagina iniziale"><span class="logo inline">BCW</span></a>
+    <nav class="navbar floating" aria-label="Sezioni">
+      <a class="nav-item" href="#funzioni" data-spy="funzioni"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#dashboardFill"/></svg>Funzioni</a>
+      <a class="nav-item" href="#temi" data-spy="temi"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#palette"/></svg>Temi</a>
+      <a class="nav-item" href="#plus" data-spy="plus"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#workspacePremium"/></svg>BCW+</a>
+      <a class="nav-item" href="#scarica" data-spy="scarica"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#download"/></svg>Scarica</a>
+      <a class="nav-item desktop-only" href="support/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#info"/></svg>Supporto</a>
+    </nav>
+    <div class="actions-pill floating">
+      <a class="icon-btn only-mobile" href="support/" aria-label="Supporto"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#info"/></svg></a>
+      <a class="icon-btn" href="https://github.com/kubos5/BCW" aria-label="BCW su GitHub"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#github"/></svg></a>
+      <button class="icon-btn" type="button" data-mode-toggle aria-label="Passa al tema scuro"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#contrast"/></svg></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- MARK: Hero -->
+    <section class="hero" id="top">
+      <div class="hero-decor" aria-hidden="true">
+        <svg class="shape d1 spin" style="--period: 90s" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie12Sided"/></svg>
+        <svg class="shape d2 spin reverse" style="--period: 70s" viewBox="0 0 100 100"><use href="assets/shapes.svg#flower"/></svg>
+        <svg class="shape d3 spin" style="--period: 30s" viewBox="0 0 100 100"><use href="assets/shapes.svg#clover4Leaf"/></svg>
+      </div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <a class="news-chip pop" href="https://github.com/kubos5/BCW/releases/tag/v4.0">
+            <span class="new">Novità</span> <span data-version="ios">BCW 4.0 sta arrivando su App Store</span>
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevronRight"/></svg>
+          </a>
+          <h1 class="display-xl">Il tuo registro, finalmente <span class="underlined" data-intro-origin>bello</span></h1>
+          <p class="lead">BCW è il registro elettronico Classeviva ridisegnato: voti, compiti, verifiche, orario e comunicazioni in un'app veloce, chiara e bella da usare, in stile Material 3 Expressive.</p>
+          <div class="cta-row">
+            <a class="btn filled l" href="#scarica"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#download"/></svg>Scarica BCW</a>
+            <a class="btn tonal l" href="https://kubos5.github.io/BCW-web/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#globe"/></svg>Prova sul web</a>
+          </div>
+          <ul class="facts">
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>Gratis e senza pubblicità</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>Open source</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>iPhone, iPad, web e Android</li>
+          </ul>
+        </div>
+
+        <div class="hero-art">
+          <svg class="shape blob spin" style="--period: 60s" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#softBurst"/></svg>
+          <div class="phone">
+            <div class="island live" data-hero-island>
+              <span class="shaped badge"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#cookie9Sided"/></svg><b>M</b></span>
+              <span class="time" data-live="left">40:00</span>
+            </div>
+            <div class="screen">
+              <picture>
+                <source data-dark media="(prefers-color-scheme: dark)" srcset="assets/img/shots/d-dashboard.webp">
+                <img src="assets/img/shots/l-dashboard.webp" width="720" height="1565" alt="La Dashboard di BCW su iPhone: la settimana in alto, poi il giorno dopo con una verifica di fisica e un compito di disegno.">
+              </picture>
+            </div>
+          </div>
+          <div class="float widget w-avg pop" style="--d: 1" aria-hidden="true">
+            <div class="ring tone-good" data-ring="7.43" data-size="94" data-line="8"><span class="num">7,43</span></div>
+            <span class="label">Media generale</span>
+            <span class="sub">84 voti</span>
+          </div>
+          <div class="float live-card pop" style="--d: 2" aria-hidden="true">
+            <div class="live-top">
+              <span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie9Sided"/></svg><b>Ma</b></span>
+              <div class="live-what">
+                <div class="kicker">Adesso · 2 di 4</div>
+                <div class="subject">Matematica</div>
+                <div class="where">2B · Rossi Giorgio</div>
+              </div>
+              <div class="live-left"><small>ancora</small><strong data-live="left">40:00</strong></div>
+            </div>
+            <div class="live-bar"><span data-live="start">10:00</span><span class="track"><i data-live="bar"></i></span><span data-live="end">11:00</span></div>
+            <div class="live-next"><span class="dot"></span>Poi alle <span data-live="next-start">11:10</span> · Storia<svg class="icon"><use href="assets/icons.svg#clipboardPen"/></svg></div>
+          </div>
+          <span class="float chip good pill chip-float pop" style="--d: 3" aria-hidden="true"><svg class="icon"><use href="assets/icons.svg#checkSealFill"/></svg>Nessuna insufficienza</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Nastro delle funzioni -->
+    <section class="marquee" aria-label="Alcune funzioni di BCW">
+      <div class="marquee-track">
+        <div class="marquee-track" style="animation: none">
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie9Sided"/></svg><svg class="icon"><use href="assets/icons.svg#checkCircle"/></svg></span>Compiti fatti</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#sunny"/></svg><svg class="icon"><use href="assets/icons.svg#bellActive"/></svg></span>Promemoria la sera prima</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#clover4Leaf"/></svg><svg class="icon"><use href="assets/icons.svg#target"/></svg></span>Obiettivo di media</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#puffy"/></svg><svg class="icon"><use href="assets/icons.svg#wand"/></svg></span>E se prendessi…</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie6Sided"/></svg><svg class="icon"><use href="assets/icons.svg#trendingUp"/></svg></span>Andamento della media</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#flower"/></svg><svg class="icon"><use href="assets/icons.svg#tune"/></svg></span>Media con o senza pesi</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#softBurst"/></svg><svg class="icon"><use href="assets/icons.svg#calendarMonth"/></svg></span>Calendario di iOS</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#gem"/></svg><svg class="icon"><use href="assets/icons.svg#lock"/></svg></span>Face ID e Touch ID</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie7Sided"/></svg><svg class="icon"><use href="assets/icons.svg#wifiOff"/></svg></span>Anche offline</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#clover8Leaf"/></svg><svg class="icon"><use href="assets/icons.svg#users"/></svg></span>Account genitore</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#pentagon"/></svg><svg class="icon"><use href="assets/icons.svg#switchAccount"/></svg></span>Più account</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#verySunny"/></svg><svg class="icon"><use href="assets/icons.svg#textSearch"/></svg></span>Ricerca in tutto il registro</span>
+        </div>
+        <div class="marquee-track" style="animation: none" aria-hidden="true">
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie9Sided"/></svg><svg class="icon"><use href="assets/icons.svg#checkCircle"/></svg></span>Compiti fatti</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#sunny"/></svg><svg class="icon"><use href="assets/icons.svg#bellActive"/></svg></span>Promemoria la sera prima</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#clover4Leaf"/></svg><svg class="icon"><use href="assets/icons.svg#target"/></svg></span>Obiettivo di media</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#puffy"/></svg><svg class="icon"><use href="assets/icons.svg#wand"/></svg></span>E se prendessi…</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie6Sided"/></svg><svg class="icon"><use href="assets/icons.svg#trendingUp"/></svg></span>Andamento della media</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#flower"/></svg><svg class="icon"><use href="assets/icons.svg#tune"/></svg></span>Media con o senza pesi</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#softBurst"/></svg><svg class="icon"><use href="assets/icons.svg#calendarMonth"/></svg></span>Calendario di iOS</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#gem"/></svg><svg class="icon"><use href="assets/icons.svg#lock"/></svg></span>Face ID e Touch ID</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie7Sided"/></svg><svg class="icon"><use href="assets/icons.svg#wifiOff"/></svg></span>Anche offline</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#clover8Leaf"/></svg><svg class="icon"><use href="assets/icons.svg#users"/></svg></span>Account genitore</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#pentagon"/></svg><svg class="icon"><use href="assets/icons.svg#switchAccount"/></svg></span>Più account</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#verySunny"/></svg><svg class="icon"><use href="assets/icons.svg#textSearch"/></svg></span>Ricerca in tutto il registro</span>
+        </div>
+      </div>
+      <div class="marquee-track reverse">
+        <div class="marquee-track" style="animation: none">
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#sunny"/></svg><svg class="icon"><use href="assets/icons.svg#signature"/></svg></span>Firma e adesione in bacheca</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie12Sided"/></svg><svg class="icon"><use href="assets/icons.svg#paperclip"/></svg></span>Allegati con Quick Look</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#clover4Leaf"/></svg><svg class="icon"><use href="assets/icons.svg#messageAlert"/></svg></span>Note e annotazioni</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#puffyDiamond"/></svg><svg class="icon"><use href="assets/icons.svg#hand"/></svg></span>Assenze da giustificare</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie9Sided"/></svg><svg class="icon"><use href="assets/icons.svg#school"/></svg></span>Scrutini e pagelle</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#flower"/></svg><svg class="icon"><use href="assets/icons.svg#folder"/></svg></span>Materiale didattico</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#gem"/></svg><svg class="icon"><use href="assets/icons.svg#history"/></svg></span>Anni precedenti</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#softBurst"/></svg><svg class="icon"><use href="assets/icons.svg#beach"/></svg></span>Conto alla rovescia alle vacanze</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie6Sided"/></svg><svg class="icon"><use href="assets/icons.svg#bell"/></svg></span>Notifiche delle novità</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#pentagon"/></svg><svg class="icon"><use href="assets/icons.svg#sparkles"/></svg></span>Modalità demo</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie7Sided"/></svg><svg class="icon"><use href="assets/icons.svg#checklist"/></svg></span>Riepilogo con le insufficienze</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#verySunny"/></svg><svg class="icon"><use href="assets/icons.svg#contrast"/></svg></span>Liquid Glass</span>
+        </div>
+        <div class="marquee-track" style="animation: none" aria-hidden="true">
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#sunny"/></svg><svg class="icon"><use href="assets/icons.svg#signature"/></svg></span>Firma e adesione in bacheca</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie12Sided"/></svg><svg class="icon"><use href="assets/icons.svg#paperclip"/></svg></span>Allegati con Quick Look</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#clover4Leaf"/></svg><svg class="icon"><use href="assets/icons.svg#messageAlert"/></svg></span>Note e annotazioni</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#puffyDiamond"/></svg><svg class="icon"><use href="assets/icons.svg#hand"/></svg></span>Assenze da giustificare</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie9Sided"/></svg><svg class="icon"><use href="assets/icons.svg#school"/></svg></span>Scrutini e pagelle</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#flower"/></svg><svg class="icon"><use href="assets/icons.svg#folder"/></svg></span>Materiale didattico</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#gem"/></svg><svg class="icon"><use href="assets/icons.svg#history"/></svg></span>Anni precedenti</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#softBurst"/></svg><svg class="icon"><use href="assets/icons.svg#beach"/></svg></span>Conto alla rovescia alle vacanze</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie6Sided"/></svg><svg class="icon"><use href="assets/icons.svg#bell"/></svg></span>Notifiche delle novità</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#pentagon"/></svg><svg class="icon"><use href="assets/icons.svg#sparkles"/></svg></span>Modalità demo</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie7Sided"/></svg><svg class="icon"><use href="assets/icons.svg#checklist"/></svg></span>Riepilogo con le insufficienze</span>
+          <span class="feature-chip"><span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#verySunny"/></svg><svg class="icon"><use href="assets/icons.svg#contrast"/></svg></span>Liquid Glass</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Funzioni -->
+    <section class="section" id="funzioni">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#dashboardFill"/></svg>Funzioni</span>
+          <h2 class="display">Tutto il registro, e qualcosa in più</h2>
+          <p class="lead">BCW ha tutte le funzioni dell'app ufficiale di Classeviva, più tanti extra pensati per chi a scuola ci va ogni giorno.</p>
+        </div>
+
+        <div class="bento">
+          <article class="tile primary with-phone span-7 reveal">
+            <div class="chip-row"><span class="chip pill" style="background: color-mix(in srgb, var(--on-primary-container) 12%, transparent); color: inherit"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#dashboard"/></svg>Dashboard</span></div>
+            <h3>La giornata dopo, già pronta</h3>
+            <p class="body">BCW si apre sul giorno dopo, con compiti, verifiche ed eventi. Sotto, i prossimi giorni come un'agenda: segna i compiti come fatti e ricevi un promemoria la sera prima.</p>
+            <div class="phone" aria-hidden="true">
+              <div class="island"></div>
+              <div class="screen"><picture><source data-dark media="(prefers-color-scheme: dark)" srcset="assets/img/shots/d-dashboard.webp"><img src="assets/img/shots/l-dashboard.webp" width="720" height="1565" alt="" loading="lazy"></picture></div>
+            </div>
+          </article>
+
+          <article class="tile span-5 reveal" style="--d: 1" id="e-se-prendessi">
+            <div class="chip-row"><span class="chip pill primary"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#wand"/></svg>E se prendessi…</span></div>
+            <h3>E se prendessi un 9?</h3>
+            <p class="body">Prova i voti che non hai ancora preso e scopri come cambiano le medie. Provalo qui:</p>
+            <div class="sim" data-sim>
+              <div class="sim-top">
+                <div class="ring tone-good" data-ring="6.9" data-size="132" data-line="10" data-sim-ring><span class="num" data-sim-avg>6,90</span></div>
+                <div class="sim-info">
+                  <div class="subject"><i aria-hidden="true"></i>Matematica</div>
+                  <span class="small" data-sim-count>5 voti · media della materia</span>
+                  <span class="chip good delta" data-sim-delta hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#trendingUp"/></svg><span>+0,00</span></span>
+                </div>
+              </div>
+              <div class="grades" data-sim-grades aria-live="polite"></div>
+              <div class="picker" role="group" aria-label="Aggiungi un voto ipotetico" data-sim-picker>
+                <button type="button" data-grade="4">4</button>
+                <button type="button" data-grade="5">5</button>
+                <button type="button" data-grade="6">6</button>
+                <button type="button" data-grade="7">7</button>
+                <button type="button" data-grade="8">8</button>
+                <button type="button" data-grade="9">9</button>
+                <button type="button" data-grade="10">10</button>
+                <button type="button" class="reset" data-sim-reset hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#refresh"/></svg>Azzera</button>
+              </div>
+              <div class="sim-goal"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#target"/></svg><span data-sim-goal>Per arrivare a 7 ti serve almeno <b>7½</b> alla prossima prova.</span></div>
+            </div>
+          </article>
+
+          <article class="tile tertiary with-phone span-5 reveal">
+            <div class="chip-row"><span class="chip pill" style="background: color-mix(in srgb, var(--on-tertiary-container) 12%, transparent); color: inherit"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#grades"/></svg>Voti</span></div>
+            <h3>Le medie, sempre sotto controllo</h3>
+            <p class="body">Media generale e dei periodi, l'andamento nel tempo e l'effetto di ogni voto sulla media della materia. Scegli tu come calcolarla: media di tutti i voti o media delle medie, con o senza pesi.</p>
+            <div class="phone" aria-hidden="true">
+              <div class="island"></div>
+              <div class="screen"><picture><source data-dark media="(prefers-color-scheme: dark)" srcset="assets/img/shots/d-grades.webp"><img src="assets/img/shots/l-grades.webp" width="720" height="1565" alt="" loading="lazy"></picture></div>
+            </div>
+          </article>
+
+          <article class="tile high with-phone side span-7 reveal" style="--d: 1">
+            <div class="copy">
+              <div class="chip-row">
+                <span class="chip pill primary"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#timetable"/></svg>Orario</span>
+                <span class="chip pill outline"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#workspacePremium"/></svg>BCW+</span>
+              </div>
+              <h3>L'orario si scrive da solo</h3>
+              <p class="body">BCW ricava una bozza dell'orario dalle lezioni registrate. Poi aggiungi note, file, foto e intervalli, sposti gli eventi trascinandoli e scegli i colori. Le verifiche segnate dai docenti compaiono da sole sulla lezione giusta.</p>
+              <div class="chip-row">
+                <span class="chip"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#viewAgenda"/></svg>Vista Lista e Giorno</span>
+                <span class="chip"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#coffee"/></svg>Intervalli</span>
+                <span class="chip"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#paperclip"/></svg>Note e allegati</span>
+              </div>
+            </div>
+            <div class="phone" aria-hidden="true">
+              <div class="island"></div>
+              <div class="screen"><picture><source data-dark media="(prefers-color-scheme: dark)" srcset="assets/img/shots/d-timetable-day.webp"><img src="assets/img/shots/l-timetable-day.webp" width="720" height="1565" alt="" loading="lazy"></picture></div>
+            </div>
+          </article>
+
+          <div class="mini-grid span-12 reveal">
+            <div class="mini"><span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#cookie9Sided"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#megaphone"/></svg></span><div class="copy"><h4>Bacheca</h4><p>Comunicazioni con adesione, firma e risposta, e gli allegati aperti al volo.</p></div></div>
+            <div class="mini"><span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#sunny"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#search"/></svg></span><div class="copy"><h4>Ricerca</h4><p>Compiti, voti, comunicazioni, materiale e note da un'unica barra.</p></div></div>
+            <div class="mini"><span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#clover4Leaf"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#bellActive"/></svg></span><div class="copy"><h4>Notifiche</h4><p>Nuovi voti, comunicazioni, note, assenze e compiti, anche con l'app chiusa.</p></div></div>
+            <div class="mini"><span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#puffy"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#checklist"/></svg></span><div class="copy"><h4>Da vedere</h4><p>Comunicazioni e note da leggere e assenze da giustificare, in un posto solo.</p></div></div>
+            <div class="mini"><span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#flower"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#wifiOff"/></svg></span><div class="copy"><h4>Anche offline</h4><p>Senza connessione vedi i dati dell'ultima volta che hai aperto l'app.</p></div></div>
+            <div class="mini"><span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#gem"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#lock"/></svg></span><div class="copy"><h4>Solo tua</h4><p>Blocca l'app con Face ID o Touch ID.</p></div></div>
+            <div class="mini"><span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#cookie7Sided"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#users"/></svg></span><div class="copy"><h4>Per tutta la famiglia</h4><p>Più account e account genitore con più figli: passi dall'uno all'altro in un tocco.</p></div></div>
+            <div class="mini"><span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#softBurst"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#calendarMonth"/></svg></span><div class="copy"><h4>Nel Calendario</h4><p>Compiti, verifiche ed eventi anche nel Calendario di iOS.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: In diretta -->
+    <section class="section tight live-section" id="diretta" data-nav="funzioni">
+      <div class="container">
+        <div class="live-panel reveal">
+          <svg class="shape decor spin" style="--period: 80s" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#cookie12Sided"/></svg>
+          <div class="copy">
+            <span class="eyebrow"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#lockClock"/></svg>Attività in diretta e widget</span>
+            <h2 class="display">La lezione in corso, in diretta</h2>
+            <p class="lead">Sulla schermata di blocco e nella Dynamic Island: la materia nel suo colore, l'aula, quanto manca e la lezione dopo.</p>
+            <ul class="live-points">
+              <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#schedule"/></svg>Parte da sola mezz'ora prima della prima lezione e sparisce dopo l'ultima, anche con l'app chiusa.</li>
+              <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#coffee"/></svg>Negli intervalli mostra quanto manca alla fine e la lezione successiva, con la sua aula.</li>
+              <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#widgets"/></svg>Widget per la Home e la schermata di blocco: orario, lezione in corso, compiti e verifiche, prossima verifica e media.</li>
+            </ul>
+          </div>
+          <div class="live-demo">
+            <button class="big-island" type="button" aria-expanded="false" aria-label="Dynamic Island con la lezione in corso: tocca per allargarla" data-big-island>
+              <span class="compact" aria-hidden="true">
+                <span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie9Sided"/></svg><b>M</b></span>
+                <span class="time" data-live="left">40:00</span>
+              </span>
+              <span class="expanded">
+                <span class="row">
+                  <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#cookie9Sided"/></svg><b>Ma</b></span>
+                  <span class="what"><small>ADESSO · 2 DI 4</small><strong>Matematica</strong><span>2B · Rossi Giorgio</span></span>
+                  <span class="left" data-live="left">40:00</span>
+                </span>
+                <span class="bar"><span data-live="start">10:00</span><span class="track"><i data-live="bar"></i></span><span data-live="end">11:00</span></span>
+                <span class="next">Poi alle <b data-live="next-start">11:10</b> · <b>Storia</b> · Lab 2</span>
+              </span>
+            </button>
+            <span class="island-hint"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#info"/></svg>Tocca l'isola per allargarla</span>
+            <div class="widget-row" aria-hidden="true">
+              <div class="widget w-timetable">
+                <header><strong>Oggi</strong><span>4 lezioni</span></header>
+                <div class="w-row" style="--sc: var(--subject-5)"><i></i>Italiano<em data-live="prev-start">09:00</em></div>
+                <div class="w-row now" style="--sc: var(--subject-2)"><i></i>Matematica<em data-live="start">10:00</em></div>
+                <div class="w-row" style="--sc: var(--subject-3)"><i></i>Storia<em data-live="next-start">11:10</em></div>
+                <div class="w-row" style="--sc: var(--subject-1)"><i></i>Inglese<em data-live="last-start">12:10</em></div>
+              </div>
+              <div class="widget w-test">
+                <span class="shaped"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#sunny"/></svg><svg class="icon"><use href="assets/icons.svg#clipboardPen"/></svg></span>
+                <div class="days">1<small>giorno</small></div>
+                <div class="what">Fisica · Verifica</div>
+                <div class="when">Domani, 10:00</div>
+              </div>
+              <div class="widget w-avg">
+                <div class="ring tone-good" data-ring="7.43" data-size="84" data-line="8"><span class="num" style="font-size: 21px">7,43</span></div>
+                <span class="label">Media generale</span>
+                <span class="sub">Trimestre 7,43</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Temi -->
+    <section class="section" id="temi">
+      <div class="container">
+        <div class="themes">
+          <div class="copy reveal">
+            <span class="eyebrow"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#palette"/></svg>Aspetto</span>
+            <h2 class="display">Il tuo colore, ovunque</h2>
+            <p class="lead">Dieci temi o un colore a tua scelta, in chiaro o in scuro. Da un solo colore BCW genera l'intera palette, come Material 3, e anche l'icona dell'app lo segue. Provalo: questa pagina cambia con lui.</p>
+            <div class="swatches" role="radiogroup" aria-label="Colore del tema" data-swatches>
+              <button class="swatch" type="button" role="radio" aria-checked="true" data-accent="#a23e2f" data-name="Mattone" aria-label="Mattone (BCW)" style="--a:#9a594e;--b:#e7bdb6;--c3:#cda56a;--ad:#f9b6ab;--bd:#caa29b;--cd:#dcb277"><span class="dots"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg></button>
+              <button class="swatch" type="button" role="radio" aria-checked="false" data-accent="#c0661b" data-name="Arancio" aria-label="Arancio" style="--a:#955d36;--b:#e5bfa8;--c3:#b9ac6c;--ad:#f5ba94;--bd:#c8a48e;--cd:#c7b978"><span class="dots"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg></button>
+              <button class="swatch" type="button" role="radio" aria-checked="false" data-accent="#9a7b12" data-name="Oro" aria-label="Oro" style="--a:#7f6826;--b:#d5c5a1;--c3:#d7a072;--ad:#dcc487;--bd:#b9aa87;--cd:#e6ad7f"><span class="dots"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg></button>
+              <button class="swatch" type="button" role="radio" aria-checked="false" data-accent="#2f7d55" data-name="Verde" aria-label="Verde" style="--a:#3f7556;--b:#b5ccbb;--c3:#9fb27c;--ad:#a5d1b3;--bd:#9ab1a0;--cd:#adc089"><span class="dots"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg></button>
+              <button class="swatch" type="button" role="radio" aria-checked="false" data-accent="#1f7a80" data-name="Petrolio" aria-label="Petrolio" style="--a:#2b757a;--b:#b1cbce;--c3:#8aafcf;--ad:#9cd0d4;--bd:#96b0b2;--cd:#98bddd"><span class="dots"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg></button>
+              <button class="swatch" type="button" role="radio" aria-checked="false" data-accent="#2f6db5" data-name="Blu" aria-label="Blu" style="--a:#4f6c96;--b:#bcc7dc;--c3:#b2a4d3;--ad:#b2c8ec;--bd:#a1acc0;--cd:#c0b2e1"><span class="dots"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg></button>
+              <button class="swatch" type="button" role="radio" aria-checked="false" data-accent="#5b5bb0" data-name="Indaco" aria-label="Indaco" style="--a:#666698;--b:#c6c4dd;--c3:#c59fc8;--ad:#c4c2ee;--bd:#aba9c1;--cd:#d3acd6"><span class="dots"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg></button>
+              <button class="swatch" type="button" role="radio" aria-checked="false" data-accent="#8a4fb0" data-name="Viola" aria-label="Viola" style="--a:#7d5f8f;--b:#d2c1d8;--c3:#d69ab0;--ad:#d9bce7;--bd:#b6a6bd;--cd:#e5a8be"><span class="dots"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg></button>
+              <button class="swatch" type="button" role="radio" aria-checked="false" data-accent="#b8456f" data-name="Rosa" aria-label="Rosa" style="--a:#96586b;--b:#e3bdc6;--c3:#c2a0ca;--ad:#f3b6c6;--bd:#c6a2aa;--cd:#d0add8"><span class="dots"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg></button>
+              <button class="swatch" type="button" role="radio" aria-checked="false" data-accent="#5f6b7a" data-name="Ardesia" aria-label="Ardesia" style="--a:#486d94;--b:#bac8db;--c3:#aca6d5;--ad:#adc9eb;--bd:#9facbf;--cd:#bab3e3"><span class="dots"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg></button>
+              <label class="swatch custom" role="radio" aria-checked="false" aria-label="Un colore a tua scelta" data-custom-swatch>
+                <span class="dots"></span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#colorize"/></svg>
+                <input type="color" value="#a23e2f" data-custom-color aria-label="Scegli un colore">
+              </label>
+            </div>
+            <div class="button-group" role="group" aria-label="Chiaro o scuro" data-mode-group>
+              <button type="button" data-mode="light" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#sun"/></svg>Chiaro</button>
+              <button type="button" data-mode="auto" aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#contrast"/></svg>Automatico</button>
+              <button type="button" data-mode="dark" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#darkMode"/></svg>Scuro</button>
+            </div>
+            <div class="icon-preview">
+              <span class="app-icon" data-app-icon><img src="assets/img/app-icon.png" width="72" height="72" alt="L'icona di BCW"></span>
+              <p class="small"><strong style="color: var(--on-surface)">L'icona segue il tema.</strong><br>Nell'app scegli tra il colore del tema e dieci colori, in chiaro, scuro, colorata o trasparente. Qui cambia anche quella della scheda del browser.</p>
+            </div>
+          </div>
+          <div class="themes-art reveal" style="--d: 1">
+            <svg class="shape blob spin" style="--period: 70s" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#clover8Leaf"/></svg>
+            <svg class="shape blob2 spin reverse" style="--period: 24s" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#cookie7Sided"/></svg>
+            <div class="phone">
+              <div class="island"></div>
+              <div class="screen">
+                <picture data-accent-shot>
+                  <source data-dark media="(prefers-color-scheme: dark)" srcset="assets/img/shots/d-accent-mattone.webp">
+                  <img src="assets/img/shots/l-accent-mattone.webp" width="720" height="1565" alt="La Dashboard di BCW con il tema scelto." loading="lazy">
+                </picture>
+              </div>
+            </div>
+            <span class="accent-name" aria-live="polite"><i aria-hidden="true"></i><span data-accent-name>Mattone</span></span>
+          </div>
+        </div>
+
+        <div class="compare-wrap">
+          <div class="compare reveal">
+            <div class="phone" style="--pos: 50%" data-compare>
+              <div class="island"></div>
+              <div class="screen">
+                <div class="layer">
+                  <picture><source data-dark media="(prefers-color-scheme: dark)" srcset="assets/img/shots/d-dashboard.webp"><img src="assets/img/shots/l-dashboard.webp" width="720" height="1565" alt="BCW con Material 3 Expressive" loading="lazy"></picture>
+                </div>
+                <div class="layer glass">
+                  <picture><source data-dark media="(prefers-color-scheme: dark)" srcset="assets/img/shots/d-glass-dashboard.webp"><img src="assets/img/shots/l-glass-dashboard.webp" width="720" height="1565" alt="BCW con Liquid Glass" loading="lazy"></picture>
+                </div>
+                <span class="divider" aria-hidden="true"></span>
+              </div>
+              <input type="range" min="0" max="100" value="50" aria-label="Confronta Material 3 Expressive, a sinistra, e Liquid Glass, a destra" data-compare-range>
+            </div>
+            <div class="compare-labels" aria-hidden="true">
+              <span class="chip pill primary">Material 3 Expressive</span>
+              <span class="chip pill outline">Liquid Glass</span>
+            </div>
+          </div>
+          <div class="copy reveal" style="--d: 1">
+            <span class="eyebrow"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#ios"/></svg>Material o Liquid Glass</span>
+            <h2 class="display">Due stili, la stessa app</h2>
+            <p class="lead">BCW nasce in Material 3 Expressive: barra di navigazione flottante, liste segmentate, forme e animazioni a molla. In Impostazioni › Aspetto puoi passare a Liquid Glass: barra di navigazione, schede e menu diventano quelli di iOS, in vetro.</p>
+            <p class="small">Trascina il cursore sul telefono per confrontarli.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: BCW+ -->
+    <section class="section tight" id="plus">
+      <div class="container">
+        <div class="plus reveal">
+          <div class="plus-decor" aria-hidden="true">
+            <svg class="shape p1 spin" style="--period: 40s" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie12Sided"/></svg>
+            <svg class="shape p2 spin reverse" style="--period: 55s" viewBox="0 0 100 100"><use href="assets/shapes.svg#flower"/></svg>
+            <svg class="shape p3 spin" style="--period: 30s" viewBox="0 0 100 100"><use href="assets/shapes.svg#clover4Leaf"/></svg>
+          </div>
+          <div class="plus-hero">
+            <div class="plus-showcase" aria-hidden="true">
+              <div class="widget w-timetable">
+                <header><strong>Oggi</strong><span>4 lezioni</span></header>
+                <div class="w-row" style="--sc: var(--subject-5)"><i></i>Italiano<em data-live="prev-start">09:00</em></div>
+                <div class="w-row now" style="--sc: var(--subject-2)"><i></i>Matematica<em data-live="start">10:00</em></div>
+                <div class="w-row" style="--sc: var(--subject-3)"><i></i>Storia<em data-live="next-start">11:10</em></div>
+                <div class="w-row" style="--sc: var(--subject-1)"><i></i>Inglese<em data-live="last-start">12:10</em></div>
+              </div>
+              <div class="widget w-now" style="--p: 33%">
+                <span class="kicker" style="color: var(--subject-2)">Adesso</span>
+                <span class="subject">Matematica</span>
+                <span class="where">2B</span>
+                <span class="left">ancora <b data-live="left-min">40 min</b></span>
+                <span class="bar" style="background: color-mix(in srgb, var(--subject-2) 22%, transparent)"><i data-live="bar" style="background: var(--subject-2)"></i></span>
+                <span class="next">Poi Storia · <span data-live="next-start">11:10</span></span>
+              </div>
+            </div>
+            <h2 class="wordmark" aria-label="BCW+">BCW<span class="shaped" aria-hidden="true"><svg class="shape" viewBox="0 0 100 100"><use href="assets/shapes.svg#cookie9Sided"/></svg><svg class="icon"><use href="assets/icons.svg#plus"/></svg></span></h2>
+            <p class="tagline">L'orario e i widget, per sempre</p>
+          </div>
+          <div class="plus-body">
+            <div class="list-group">
+              <div class="feature-row" style="--tint: var(--subject-3)">
+                <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#cookie9Sided"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#timetable"/></svg></span>
+                <div><h3>Orario</h3><p>Tieni traccia delle materie della settimana con note, file, e intervalli. Scegli i tuoi colori con le palette personalizzate, e lascia che BCW inserisca i dati in automatico.</p></div>
+              </div>
+              <div class="feature-row" style="--tint: var(--subject-5)">
+                <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#sunny"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#lockClock"/></svg></span>
+                <div><h3>Attività in diretta</h3><p>Tieni traccia della lezione in corso direttamente dalla Dynamic Island o dalla schermata di blocco.</p></div>
+              </div>
+              <div class="feature-row" style="--tint: var(--subject-1)">
+                <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#clover4Leaf"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#widgets"/></svg></span>
+                <div><h3>Widget</h3><p>Consulta il tuo orario, le prossime verifiche o i tuoi voti a colpo d'occhio direttamente dalla schermata home.</p></div>
+              </div>
+              <div class="feature-row" style="--tint: var(--subject-7)">
+                <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#puffy"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#cloud"/></svg></span>
+                <div><h3>Sempre con te</h3><p>L'orario si sincronizza con il tuo account BCW, insieme agli allegati, su tutti i tuoi dispositivi.</p></div>
+              </div>
+            </div>
+            <aside class="price-card" aria-label="Prezzo di BCW+">
+              <div class="price"><strong>2,99 €</strong><span>una volta sola</span></div>
+              <div class="chips">
+                <span class="chip pill"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>Pagamento unico</span>
+                <span class="chip pill"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>Niente abbonamento</span>
+                <span class="chip pill"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>Su tutti i tuoi dispositivi</span>
+              </div>
+              <p class="note">BCW+ si acquista dentro l'app, dal banner in cima alle Impostazioni o dalla scheda Orario, appena BCW sarà su App Store.</p>
+              <a class="btn filled l" href="#scarica"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#lockOpen"/></svg>Scarica BCW</a>
+              <p class="note"><strong style="color: var(--on-surface)">Usi la build di GitHub?</strong> Lì orario, widget e attività in diretta sono già sbloccati, gratis.</p>
+            </aside>
+          </div>
+          <p class="plus-foot">Tutto il resto di BCW resta gratuito: voti, agenda, bacheca, assenze, note e le altre funzioni. Il tuo acquisto sostiene lo sviluppo di BCW, un progetto indipendente e open source.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Account BCW -->
+    <section class="section" id="account">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#cloud"/></svg>Account BCW</span>
+          <h2 class="display">Un accesso, tutti i tuoi account</h2>
+          <p class="lead">Con un account BCW ritrovi account Classeviva, impostazioni e orario su ogni dispositivo. È facoltativo: BCW funziona benissimo anche senza.</p>
+        </div>
+        <div class="account-grid">
+          <div class="account-main">
+            <div class="account-demo reveal" aria-hidden="true">
+              <header>
+                <span class="avatar">G</span>
+                <div><strong>giulia.rossi</strong><span>Account BCW</span></div>
+                <span class="chip good pill"><svg class="icon"><use href="assets/icons.svg#doneAll"/></svg>Sincronizzato</span>
+              </header>
+              <div class="linked">
+                <div class="profile" style="--pc: var(--subject-2)"><span class="initials">GR</span><div><strong>Giulia Rossi</strong><span>3B · Liceo scientifico</span></div><svg class="icon"><use href="assets/icons.svg#check"/></svg></div>
+                <div class="profile" style="--pc: var(--subject-5)"><span class="initials">MR</span><div><strong>Marco Rossi</strong><span>1A · Scuola media</span></div><svg class="icon"><use href="assets/icons.svg#check"/></svg></div>
+              </div>
+              <div class="synced">
+                <span class="chip pill"><svg class="icon"><use href="assets/icons.svg#tune"/></svg>Impostazioni</span>
+                <span class="chip pill"><svg class="icon"><use href="assets/icons.svg#palette"/></svg>Aspetto</span>
+                <span class="chip pill"><svg class="icon"><use href="assets/icons.svg#timetable"/></svg>Orario e file</span>
+              </div>
+            </div>
+            <div class="list-group reveal" style="--d: 1">
+              <div class="feature-row" style="--tint: var(--subject-2)">
+                <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#cookie9Sided"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#switchAccount"/></svg></span>
+                <div><h3>Tutti i tuoi account, un solo accesso</h3><p>Abbina fino a dieci account Classeviva (il tuo, quelli di fratelli e sorelle o i profili di un genitore) ed entra in tutti con il tuo account BCW, su qualsiasi dispositivo.</p></div>
+              </div>
+              <div class="feature-row" style="--tint: var(--subject-5)">
+                <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#sunny"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#palette"/></svg></span>
+                <div><h3>Impostazioni e aspetto</h3><p>Tema, colori e preferenze ti seguono da iPhone a iPad, fino al web.</p></div>
+              </div>
+              <div class="feature-row" style="--tint: var(--subject-3)">
+                <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#clover4Leaf"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#timetable"/></svg></span>
+                <div><h3>Orario, file e foto</h3><p>L'orario di ogni account abbinato si sincronizza con gli allegati. Se lo modifichi da due dispositivi insieme, BCW unisce le modifiche.</p></div>
+              </div>
+              <div class="feature-row" style="--tint: var(--subject-1)">
+                <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#gem"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#lock"/></svg></span>
+                <div><h3>Credenziali cifrate</h3><p>Sul server le password di Classeviva sono cifrate con AES-256-GCM e quella dell'account BCW è salvata solo come hash. Cambiandola esci da tutti gli altri dispositivi.</p></div>
+              </div>
+              <div class="feature-row" style="--tint: var(--subject-7)">
+                <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#puffy"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#eye"/></svg></span>
+                <div><h3>Sempre sotto controllo</h3><p>Chi entra con un account Classeviva vede a quali account BCW è abbinato e può scollegarlo senza conoscerne la password. Scollegando un account o eliminando quello BCW si cancellano anche i dati sul server.</p></div>
+              </div>
+            </div>
+          </div>
+          <aside class="server-card reveal" style="--d: 2">
+            <svg class="shape decor spin" style="--period: 50s" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#cookie12Sided"/></svg>
+            <span class="eyebrow"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#server"/></svg>Open source</span>
+            <h3>Il tuo server, i tuoi dati</h3>
+            <p>Il server degli account BCW, <a href="https://github.com/kubos5/BCW-api">BCW-api</a>, è open source: puoi pubblicarlo sul tuo account Cloudflare, dove basta il piano gratuito, oppure su un tuo server con Node e SQLite. Poi in BCW apri <strong>Impostazioni › Account › Server BCW</strong> e scrivi il tuo indirizzo.</p>
+            <pre class="terminal" aria-label="Comandi per pubblicare BCW-api"><code><span class="c"># Cloudflare Worker con database D1</span>
+git clone https://github.com/kubos5/BCW-api
+cd BCW-api &amp;&amp; npm install
+npx wrangler d1 create bcw
+npm run db:migrate
+npx wrangler secret put CREDENTIALS_KEY
+npm run deploy</code></pre>
+            <div class="chips">
+              <span class="chip pill"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>Piano gratuito di Cloudflare</span>
+              <span class="chip pill"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>Anche con Node e SQLite</span>
+              <span class="chip pill"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"/></svg>Fa da proxy per BCW-web</span>
+            </div>
+            <div class="actions">
+              <a class="btn filled" href="https://github.com/kubos5/BCW-api"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#github"/></svg>Codice e istruzioni</a>
+              <a class="btn tonal" href="support/#server-bcw"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#info"/></svg>Come si collega</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Aperta e privata -->
+    <section class="section" id="privacy">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#lock"/></svg>Privacy e codice</span>
+          <h2 class="display">Aperta, privata, tua</h2>
+          <p class="lead">BCW è un progetto indipendente e open source, senza pubblicità. Le tue credenziali vanno solo dove servono.</p>
+        </div>
+        <div class="trust">
+          <div class="card reveal">
+            <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#cookie12Sided"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#github"/></svg></span>
+            <h3>Open source</h3>
+            <p>Il codice di tutte le versioni è su GitHub con licenza MIT: puoi leggerlo, compilarlo da te e contribuire.</p>
+            <a class="more" href="https://github.com/kubos5/BCW">Vedi il codice<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevronRight"/></svg></a>
+          </div>
+          <div class="card reveal" style="--d: 1">
+            <span class="shaped" style="--c: var(--secondary-container); --on-c: var(--on-secondary-container)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#sunny"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#key"/></svg></span>
+            <h3>Credenziali sul dispositivo</h3>
+            <p>Nome utente e password restano nel Portachiavi del dispositivo e vanno solo ai server di Classeviva, con le stesse API dell'app ufficiale.</p>
+          </div>
+          <div class="card reveal" style="--d: 2">
+            <span class="shaped" style="--c: var(--tertiary-container); --on-c: var(--on-tertiary-container)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#puffy"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#cloud"/></svg></span>
+            <h3>Account BCW, se vuoi</h3>
+            <p>Abbina uno o più account Classeviva ed entra in tutti con un solo accesso, anche sul web. Impostazioni, aspetto e orario si sincronizzano; le credenziali sul server sono cifrate.</p>
+            <a class="more" href="#account">Come funziona<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevronRight"/></svg></a>
+          </div>
+          <div class="card reveal" style="--d: 3">
+            <span class="shaped" style="--c: var(--surface-container-highest); --on-c: var(--primary)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#heart"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#volunteer"/></svg></span>
+            <h3>Senza pubblicità</h3>
+            <p>Nessun banner e nessun abbonamento. BCW+ è un acquisto unico che sostiene lo sviluppo di un progetto indipendente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Scarica -->
+    <section class="section tight" id="scarica">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#download"/></svg>Scarica</span>
+          <h2 class="display">BCW, ovunque studi</h2>
+          <p class="lead">Su iPhone e iPad, nel browser e su Android: stessi colori, stesse funzioni e, con l'account BCW, gli stessi dati.</p>
+        </div>
+        <div class="platforms">
+          <article class="platform reveal">
+            <div class="platform-art" aria-hidden="true">
+              <div class="phone">
+                <div class="island"></div>
+                <div class="screen"><picture><source data-dark media="(prefers-color-scheme: dark)" srcset="assets/img/shots/d-timetable.webp"><img src="assets/img/shots/l-timetable.webp" width="720" height="1565" alt="" loading="lazy"></picture></div>
+              </div>
+            </div>
+            <header><h3>iPhone e iPad</h3><span class="chip pill primary mono" data-version="ios">v4.0</span></header>
+            <p class="body">La versione principale, nativa in Swift: widget, attività in diretta, Liquid Glass e un layout dedicato all'iPad.</p>
+            <span class="chip fair" style="align-self: flex-start"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"/></svg>In arrivo su App Store</span>
+            <div class="actions">
+              <a class="btn filled" href="https://github.com/kubos5/BCW/releases/latest"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#download"/></svg>Scarica l'IPA</a>
+              <a class="btn text" href="support/#altstore">Come installarla</a>
+            </div>
+            <span class="req"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#ios"/></svg>iOS e iPadOS 26 o successivi</span>
+          </article>
+          <article class="platform reveal" style="--d: 1">
+            <div class="platform-art" aria-hidden="true">
+              <div class="browser">
+                <div class="bar"><i></i><i></i><i></i><span></span></div>
+                <picture><source data-dark media="(prefers-color-scheme: dark)" srcset="assets/img/web/d-dashboard.webp"><img src="assets/img/web/l-dashboard.webp" width="1440" height="900" alt="" loading="lazy"></picture>
+              </div>
+            </div>
+            <header><h3>Web</h3><span class="chip pill primary mono" data-version="web">v3.3.1</span></header>
+            <p class="body">Nel browser, senza installare nulla: stesse funzioni e stesso design, sul computer e sul telefono. Si installa anche come app.</p>
+            <span class="chip good" style="align-self: flex-start"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#checkCircle"/></svg>Disponibile</span>
+            <div class="actions">
+              <a class="btn filled" href="https://kubos5.github.io/BCW-web/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#globe"/></svg>Apri BCW per il web</a>
+              <a class="btn text" href="support/#pwa">Installala</a>
+            </div>
+            <span class="req"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#globe"/></svg>Safari, Chrome, Edge o Firefox recenti</span>
+          </article>
+          <article class="platform reveal" style="--d: 2">
+            <div class="platform-art" aria-hidden="true">
+              <div class="android-art">
+                <span class="shaped spin-on-hover"><svg class="shape spin" style="--period: 50s" viewBox="0 0 100 100"><use href="assets/shapes.svg#clover8Leaf"/></svg><svg class="icon"><use href="assets/icons.svg#android"/></svg></span>
+              </div>
+            </div>
+            <header><h3>Android</h3><span class="chip pill primary mono" data-version="android">v3.3.1</span></header>
+            <p class="body">Nativa in Kotlin e Jetpack Compose, in Material 3 Expressive, con i Live Updates di Android 16 per la lezione in corso.</p>
+            <span class="chip good" style="align-self: flex-start"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#checkCircle"/></svg>Disponibile</span>
+            <div class="actions">
+              <a class="btn filled" href="https://github.com/kubos5/BCW-android/releases/latest"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#download"/></svg>Scarica l'APK</a>
+              <a class="btn text" href="support/#apk">Come installarla</a>
+            </div>
+            <span class="req"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#android"/></svg>Android 8.0 o successivo</span>
+          </article>
+        </div>
+        <div class="backend-card reveal">
+          <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="assets/shapes.svg#cookie9Sided"/></svg><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#api"/></svg></span>
+          <div class="copy">
+            <h3>BCW-api, il server degli account BCW</h3>
+            <p class="small">Un Cloudflare Worker con un database D1, che puoi pubblicare anche sul tuo account: basta il piano gratuito.</p>
+          </div>
+          <a class="btn outlined" href="https://github.com/kubos5/BCW-api"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#github"/></svg>Codice</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Domande -->
+    <section class="section" id="domande">
+      <div class="container faq-wrap">
+        <div class="copy reveal">
+          <span class="eyebrow"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#info"/></svg>Domande</span>
+          <h2 class="display">Domande frequenti</h2>
+          <p class="lead">Le risposte veloci. Per installazione, problemi di accesso, notifiche e tutto il resto c'è la pagina di supporto.</p>
+          <a class="btn tonal l" href="support/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#info"/></svg>Vai al supporto</a>
+        </div>
+        <div class="faq reveal" style="--d: 1">
+          <details>
+            <summary><span class="q">BCW è gratis?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevronDown"/></svg></span></summary>
+            <div class="answer"><p>Sì. Voti, compiti, agenda, bacheca, assenze, note e tutte le altre funzioni sono gratis e senza pubblicità. Nella versione dell'App Store orario, widget e attività in diretta si sbloccano con <strong>BCW+</strong>, un acquisto unico da 2,99 €; la build su GitHub ha già tutto sbloccato.</p></div>
+          </details>
+          <details>
+            <summary><span class="q">È l'app ufficiale di Classeviva?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevronDown"/></svg></span></summary>
+            <div class="answer"><p>No: BCW è un client non ufficiale e non è affiliata a Gruppo Spaggiari Parma S.p.A. Usa le stesse API dell'app ufficiale, quindi vedi gli stessi dati del tuo registro, con un'altra interfaccia e molte funzioni in più.</p></div>
+          </details>
+          <details>
+            <summary><span class="q">Le mie credenziali sono al sicuro?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevronDown"/></svg></span></summary>
+            <div class="answer"><p>Senza account BCW sono salvate nel Portachiavi del dispositivo e inviate solo ai server di Classeviva. Se usi un account BCW per sincronizzare più dispositivi, le credenziali degli account abbinati sono salvate sul server di BCW, cifrate con AES-256-GCM.</p></div>
+          </details>
+          <details>
+            <summary><span class="q">Funziona anche per i genitori?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevronDown"/></svg></span></summary>
+            <div class="answer"><p>Sì: BCW supporta gli account genitore con più figli. Puoi anche aggiungere più account e passare dall'uno all'altro dall'avatar in Dashboard o tenendo premuta la scheda Tu.</p></div>
+          </details>
+          <details>
+            <summary><span class="q">Quando arriva su App Store?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevronDown"/></svg></span></summary>
+            <div class="answer"><p><span data-version="ios">BCW 4.0</span> è in fase di approvazione e arriverà molto presto. Nel frattempo puoi installare l'IPA con AltStore o compilarla con Xcode: trovi i passaggi nel <a href="support/#altstore">supporto</a>.</p></div>
+          </details>
+          <details>
+            <summary><span class="q">Posso provarla senza un account?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevronDown"/></svg></span></summary>
+            <div class="answer"><p>Sì: nella schermata di accesso tocca <strong>Prova la demo</strong> e BCW si riempie di dati di esempio. Funziona anche nella <a href="https://kubos5.github.io/BCW-web/">versione web</a>, senza installare nulla.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <span class="logo big-logo" aria-label="BCW">BCW</span>
+          <p class="body tag">Better ClasseViVa: il client in Material 3 Expressive per il registro elettronico Classeviva. Fatto con cura da <a href="https://github.com/kubos5">kubos5</a>, con <a href="https://github.com/mikqsdev">mikqsdev</a> per BCW per Android.</p>
+        </div>
+        <div>
+          <h4>BCW</h4>
+          <ul>
+            <li><a href="#funzioni">Funzioni</a></li>
+            <li><a href="#temi">Temi</a></li>
+            <li><a href="#plus">BCW+</a></li>
+            <li><a href="#scarica">Scarica</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Codice</h4>
+          <ul>
+            <li><a href="https://github.com/kubos5/BCW"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#ios"/></svg>BCW per iOS</a></li>
+            <li><a href="https://github.com/kubos5/BCW-web"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#globe"/></svg>BCW per Web</a></li>
+            <li><a href="https://github.com/kubos5/BCW-android"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#android"/></svg>BCW per Android</a></li>
+            <li><a href="https://github.com/kubos5/BCW-api"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#api"/></svg>Backend</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Aiuto</h4>
+          <ul>
+            <li><a href="support/">Supporto</a></li>
+            <li><a href="support/#problemi">Risoluzione dei problemi</a></li>
+            <li><a href="https://github.com/kubos5/BCW/issues">Segnala un problema</a></li>
+            <li><a href="https://github.com/kubos5/BCW/releases">Novità e versioni</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>BCW non è affiliata a Gruppo Spaggiari Parma S.p.A. Classeviva è un marchio dei rispettivi proprietari.</span>
+        <span>© 2026 kubos5 · <a href="https://github.com/kubos5/BCW/blob/main/LICENSE">Licenza MIT</a></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

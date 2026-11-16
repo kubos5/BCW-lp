@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="it" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Supporto · BCW</title>
+  <meta name="description" content="Supporto di BCW, il client per il registro elettronico Classeviva: installazione, problemi di accesso, notifiche, orario, widget, BCW+, account BCW e codice sorgente.">
+  <meta name="theme-color" content="#fff8f6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#130d0b" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:title" content="Supporto · BCW">
+  <meta property="og:description" content="Installazione, accesso, notifiche, orario, widget, BCW+ e account BCW: le risposte ai problemi più comuni.">
+  <meta property="og:image" content="https://kubos5.github.io/BCW-lp/assets/img/og.png">
+  <link rel="preload" href="../assets/fonts/GoogleSansFlex-latin-wght-ROND.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.remove('no-js');
+      try {
+        var mode = localStorage.getItem('bcw-lp.mode');
+        if (mode === 'light' || mode === 'dark') d.setAttribute('data-theme', mode);
+        var theme = JSON.parse(localStorage.getItem('bcw-lp.accent') || 'null');
+        if (theme && theme.css) {
+          var style = document.createElement('style');
+          style.id = 'accent-theme';
+          style.textContent = theme.css;
+          document.head.appendChild(style);
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <script type="module" src="../assets/js/support.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Vai al contenuto</a>
+
+  <header class="topbar">
+    <a class="brand-pill floating" href="../" aria-label="BCW, pagina iniziale"><span class="logo inline">BCW</span></a>
+    <nav class="navbar floating" aria-label="Sezioni">
+      <a class="nav-item" href="../#funzioni"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#dashboardFill"/></svg>Funzioni</a>
+      <a class="nav-item" href="../#temi"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#palette"/></svg>Temi</a>
+      <a class="nav-item" href="../#plus"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#workspacePremium"/></svg>BCW+</a>
+      <a class="nav-item" href="../#scarica"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#download"/></svg>Scarica</a>
+      <a class="nav-item active desktop-only" href="./" aria-current="page"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#info"/></svg>Supporto</a>
+    </nav>
+    <div class="actions-pill floating">
+      <a class="icon-btn only-mobile" href="./" aria-current="page" aria-label="Supporto" style="color: var(--primary)"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#info"/></svg></a>
+      <a class="icon-btn" href="https://github.com/kubos5/BCW" aria-label="BCW su GitHub"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#github"/></svg></a>
+      <button class="icon-btn" type="button" data-mode-toggle aria-label="Passa al tema scuro"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#darkMode"/></svg></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- MARK: Ricerca -->
+    <section class="support-hero">
+      <div class="decor" aria-hidden="true">
+        <svg class="shape s1 spin" style="--period: 80s" viewBox="0 0 100 100"><use href="../assets/shapes.svg#cookie12Sided"/></svg>
+        <svg class="shape s2 spin reverse" style="--period: 60s" viewBox="0 0 100 100"><use href="../assets/shapes.svg#flower"/></svg>
+        <svg class="shape s3 spin" style="--period: 30s" viewBox="0 0 100 100"><use href="../assets/shapes.svg#clover4Leaf"/></svg>
+      </div>
+      <div class="container">
+        <span class="eyebrow"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#info"/></svg>Supporto</span>
+        <h1 class="display">Come possiamo aiutarti?</h1>
+        <p class="lead" style="max-width: 36em">Installazione, accesso, notifiche, orario, widget, BCW+ e account BCW: qui trovi le risposte ai problemi più comuni, i link al codice e come segnalare un problema.</p>
+        <label class="search" data-search>
+          <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#search"/></svg>
+          <span class="sr-only">Cerca nel supporto</span>
+          <input type="search" placeholder="Cerca un problema…" autocomplete="off" spellcheck="false" data-search-input>
+          <button class="icon-btn clear" type="button" aria-label="Cancella la ricerca" data-search-clear><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#x"/></svg></button>
+        </label>
+        <div class="filters" role="group" aria-label="Argomenti" data-filters>
+          <button class="filter-chip" type="button" aria-pressed="true" data-filter="">Tutto</button>
+          <button class="filter-chip" type="button" aria-pressed="false" data-filter="installazione"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#download"/></svg>Installazione</button>
+          <button class="filter-chip" type="button" aria-pressed="false" data-filter="accesso"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#key"/></svg>Accesso</button>
+          <button class="filter-chip" type="button" aria-pressed="false" data-filter="notifiche"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#bell"/></svg>Notifiche</button>
+          <button class="filter-chip" type="button" aria-pressed="false" data-filter="orario"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#timetable"/></svg>Orario e widget</button>
+          <button class="filter-chip" type="button" aria-pressed="false" data-filter="bcw-plus"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#workspacePremium"/></svg>BCW+</button>
+          <button class="filter-chip" type="button" aria-pressed="false" data-filter="account-bcw"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#cloud"/></svg>Account BCW</button>
+          <button class="filter-chip" type="button" aria-pressed="false" data-filter="dati"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#grades"/></svg>Voti e dati</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Scorciatoie -->
+    <section class="section tight" style="padding-top: 8px; padding-bottom: 24px" aria-label="Scorciatoie">
+      <div class="container quick">
+        <a href="https://github.com/kubos5/BCW/issues/new" class="reveal">
+          <div class="card">
+            <div class="row">
+              <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#cookie9Sided"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#messageAlert"/></svg></span>
+              <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#arrowUpRight"/></svg>
+            </div>
+            <h3>Segnala un problema</h3>
+            <p>Apri una issue su GitHub con la versione di BCW, il dispositivo e i passaggi per ripetere il problema.</p>
+          </div>
+        </a>
+        <a href="https://github.com/kubos5/BCW/releases/tag/v4.0" class="reveal" style="--d: 1">
+          <div class="card">
+            <div class="row">
+              <span class="shaped" style="--c: var(--secondary-container); --on-c: var(--on-secondary-container)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#sunny"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#newReleases"/></svg></span>
+              <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#arrowUpRight"/></svg>
+            </div>
+            <h3 data-version="ios">Novità di BCW 4.0</h3>
+            <p>BCW+, le note di rilascio dopo ogni aggiornamento, la nuova barra di navigazione e tante correzioni.</p>
+          </div>
+        </a>
+        <a href="https://kubos5.github.io/BCW-web/" class="reveal" style="--d: 2">
+          <div class="card">
+            <div class="row">
+              <span class="shaped" style="--c: var(--tertiary-container); --on-c: var(--on-tertiary-container)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#clover4Leaf"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#sparkles"/></svg></span>
+              <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#arrowUpRight"/></svg>
+            </div>
+            <h3>Prova la demo</h3>
+            <p>Apri la versione web e tocca «Prova la demo»: tutte le funzioni, con dati di esempio e senza account.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- MARK: Risoluzione dei problemi -->
+    <section class="section tight" id="problemi" style="padding-top: 40px">
+      <div class="container" data-topics>
+
+        <!-- Installazione -->
+        <section class="topic" id="installazione" data-topic>
+          <header>
+            <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#cookie9Sided"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#download"/></svg></span>
+            <h2>Installazione</h2>
+            <p class="small">iPhone e iPad, Android e la versione web.</p>
+          </header>
+          <div class="faq">
+            <details id="altstore">
+              <summary><span class="q">Come installo BCW su iPhone o iPad senza l'App Store?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Finché BCW non è disponibile sull'App Store, il modo più semplice è firmare l'IPA con <a href="https://altstore.io/">AltStore</a>:</p>
+                <ol>
+                  <li>installa AltServer sul computer e, da lì, AltStore sul tuo iPhone o iPad (le istruzioni sono sul sito di AltStore);</li>
+                  <li>scarica <code data-version="ios">BCW_v4.0.ipa</code> dalla <a href="https://github.com/kubos5/BCW/releases/latest">pagina delle release</a>;</li>
+                  <li>apri il file con AltStore (Condividi › AltStore, oppure il tasto + nella scheda Le mie app) e accedi con il tuo Apple ID quando te lo chiede;</li>
+                  <li>se iOS lo chiede, attiva la <span class="path">Modalità sviluppatore</span> in <span class="path">Impostazioni › Privacy e sicurezza</span> e riavvia.</li>
+                </ol>
+                <div class="callout"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#info"/></svg><span>Serve iOS o iPadOS 26 o successivi. Appena BCW sarà sull'App Store potrai passare a quella versione: gli aggiornamenti arriveranno da soli.</span></div>
+              </div>
+            </details>
+            <details id="ipa">
+              <summary><span class="q">Quale IPA devo scaricare?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Nella release trovi due file, che vengono dallo stesso codice:</p>
+                <ul>
+                  <li><code data-version="ios">BCW_v4.0.ipa</code>, la <strong>build GitHub</strong>: tutte le funzioni sono sbloccate e all'apertura BCW ti avvisa quando su GitHub esce una versione nuova. È quella da usare con AltStore.</li>
+                  <li><code data-version="ios">BCW_v4.0_APPSTORE.ipa</code>, la <strong>build dell'App Store</strong>: orario, attività in diretta e widget si sbloccano con BCW+ e non ci sono avvisi delle nuove versioni.</li>
+                </ul>
+                <p>Gli avvisi delle nuove versioni si spengono in <span class="path">Impostazioni › Generale</span>.</p>
+              </div>
+            </details>
+            <details id="rinnovo">
+              <summary><span class="q">AltStore dice che BCW scade tra pochi giorni</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Con un Apple ID gratuito le app installate così restano firmate per 7 giorni. AltStore le rinnova da solo quando il telefono e il computer con AltServer sono sulla stessa rete Wi-Fi; puoi anche aprire AltStore e toccare <strong>Aggiorna tutto</strong>.</p>
+                <p>Se la firma scade BCW non si apre, ma i dati restano: dopo il rinnovo ritrovi account, impostazioni e orario.</p>
+              </div>
+            </details>
+            <details id="xcode">
+              <summary><span class="q">Come compilo BCW con Xcode?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <ol>
+                  <li>Installa Xcode 26 o successivo dall'App Store del Mac.</li>
+                  <li>Clona <code>https://github.com/kubos5/BCW</code> da Xcode, oppure con <code>git clone</code>, e apri <code>BCW.xcodeproj</code>.</li>
+                  <li>In <span class="path">Signing &amp; Capabilities</span> scegli il tuo team (basta un qualsiasi Apple ID), sia per l'app sia per l'estensione dei widget <code>BCWWidgets</code>, con un App Group a disposizione del team.</li>
+                  <li>Esegui sul simulatore o su un dispositivo collegato via USB.</li>
+                </ol>
+                <p>Se iOS dice che lo sviluppatore non è attendibile, autorizzalo in <span class="path">Impostazioni › Generale › VPN e gestione dispositivi</span>. Lo schema <code>BCW</code> produce la build GitHub, <code>BCW App Store</code> quella con BCW+.</p>
+              </div>
+            </details>
+            <details id="apk">
+              <summary><span class="q">Come installo BCW su Android?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <ol>
+                  <li>Scarica l'APK più recente (per esempio <code data-version="android">BCW-3.3.1.apk</code>) dalle <a href="https://github.com/kubos5/BCW-android/releases/latest">release di BCW per Android</a>.</li>
+                  <li>Aprilo e, quando Android lo chiede, consenti l'installazione di app da questa fonte.</li>
+                  <li>Per aggiornare, installa il nuovo APK sopra quello vecchio: account, impostazioni e orario restano.</li>
+                </ol>
+                <p>Serve Android 8.0 o successivo; la lezione in corso come Live Update arriva da Android 16.</p>
+              </div>
+            </details>
+            <details id="pwa">
+              <summary><span class="q">Come installo la versione web come un'app?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Apri <a href="https://kubos5.github.io/BCW-web/">BCW per il web</a>, poi:</p>
+                <ul>
+                  <li>in Safari su iPhone e iPad: <span class="path">Condividi › Aggiungi alla schermata Home</span>;</li>
+                  <li>in Chrome ed Edge: il pulsante <strong>Installa</strong> nella barra degli indirizzi.</li>
+                </ul>
+                <p>Installata, si apre a tutto schermo e funziona anche offline con gli ultimi dati scaricati.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Accesso -->
+        <section class="topic" id="accesso" data-topic>
+          <header>
+            <span class="shaped" style="--c: var(--secondary-container); --on-c: var(--on-secondary-container)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#sunny"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#key"/></svg></span>
+            <h2>Accesso</h2>
+            <p class="small">Credenziali, profili e messaggi d'errore.</p>
+          </header>
+          <div class="faq">
+            <details id="credenziali">
+              <summary><span class="q">«Nome utente o password non validi»</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>BCW usa le stesse credenziali di Classeviva: il nome utente (il codice personale o l'email) e la password con cui entri sul sito o nell'app ufficiale.</p>
+                <ul>
+                  <li>Controlla di riuscire a entrare su <a href="https://web.spaggiari.eu">web.spaggiari.eu</a> con le stesse credenziali.</li>
+                  <li>Se Classeviva ti chiede di cambiare la password, fallo dal sito ufficiale e poi riprova in BCW.</li>
+                  <li>Attenzione agli spazi copiati per sbaglio prima o dopo il nome utente.</li>
+                </ul>
+              </div>
+            </details>
+            <details id="profilo">
+              <summary><span class="q">Sono un genitore con più figli: «Scegli il profilo a cui accedere»</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Con un account genitore collegato a più figli Classeviva chiede quale profilo aprire: scegli il figlio dall'elenco. Per passare da un figlio all'altro aggiungi gli altri profili come account e cambia account dall'avatar in Dashboard o tenendo premuta la scheda <strong>Tu</strong>.</p>
+              </div>
+            </details>
+            <details id="sessione">
+              <summary><span class="q">«Sessione scaduta. Accedi di nuovo.»</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>La sessione di Classeviva dura poco e BCW di solito la rinnova da sola con le credenziali salvate nel Portachiavi. Se compare questo messaggio, accedi di nuovo: può succedere dopo un cambio di password su Classeviva o se le credenziali salvate non sono più valide.</p>
+              </div>
+            </details>
+            <details id="classeviva-errori">
+              <summary><span class="q">Classeviva non risponde o dà un errore del server</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Messaggi come <strong>«Errore del server»</strong> o <strong>«Risposta inattesa da Classeviva»</strong> arrivano di solito da Classeviva stessa: manutenzione, server lenti o carichi (per esempio la mattina presto o a fine periodo).</p>
+                <ul>
+                  <li>Controlla se funzionano il sito o l'app ufficiale: se non funzionano neanche loro, aspetta e riprova più tardi.</li>
+                  <li>Nel frattempo BCW mostra i dati dell'ultima volta che l'hai aperta.</li>
+                  <li>Se solo BCW non funziona, <a href="https://github.com/kubos5/BCW/issues/new">segnalalo</a> con il testo esatto dell'errore.</li>
+                </ul>
+              </div>
+            </details>
+            <details id="proxy">
+              <summary><span class="q">Nella mia copia di BCW per il web l'accesso fallisce (errore 405)</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Il browser non può contattare direttamente Classeviva, quindi la versione web ha bisogno di un proxy. Su un hosting statico come GitHub Pages la demo funziona, ma l'accesso con un account vero fallisce (Pages risponde <code>405</code>).</p>
+                <ul>
+                  <li>avvia la tua copia con <code>node server.js</code>, che fa anche da proxy;</li>
+                  <li>oppure pubblica il proxy come Cloudflare Worker (gratis) e scrivi il suo indirizzo in <code>config.json</code>;</li>
+                  <li>oppure indica un altro proxy da <strong>Usa un altro proxy</strong> in fondo alla schermata di accesso, o da <span class="path">Impostazioni › Server</span>.</li>
+                </ul>
+                <p>I passaggi completi sono nel <a href="https://github.com/kubos5/BCW-web#hosting-statico-github-pages-netlify">README di BCW-web</a>.</p>
+              </div>
+            </details>
+            <details id="demo">
+              <summary><span class="q">Posso provare BCW senza un account?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Sì: nella schermata di accesso tocca <strong>Prova la demo</strong>. BCW si riempie di dati di esempio e puoi provare tutte le funzioni; la modalità demo si apre anche con un account già collegato e, uscendo, torni al tuo account.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Notifiche -->
+        <section class="topic" id="notifiche" data-topic>
+          <header>
+            <span class="shaped" style="--c: var(--tertiary-container); --on-c: var(--on-tertiary-container)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#clover4Leaf"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#bell"/></svg></span>
+            <h2>Notifiche e promemoria</h2>
+            <p class="small">Nuovi voti, comunicazioni e promemoria la sera prima.</p>
+          </header>
+          <div class="faq">
+            <details id="notifiche-ritardo">
+              <summary><span class="q">Le notifiche arrivano in ritardo, o non arrivano</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>BCW controlla le novità con l'aggiornamento in background di iOS, ed è iOS a scegliere quando eseguirlo: per questo le notifiche possono arrivare con un po' di ritardo. Per riceverle:</p>
+                <ol>
+                  <li>attivale in BCW, in <span class="path">Impostazioni › Notifiche</span>, scegliendo voti, comunicazioni, note, assenze e compiti;</li>
+                  <li>consenti le notifiche a BCW nelle Impostazioni di iOS;</li>
+                  <li>lascia attivo <span class="path">Impostazioni › Generale › Aggiorna app in background</span> per BCW;</li>
+                  <li>ricorda che con la modalità Risparmio energetico iOS sospende gli aggiornamenti in background.</li>
+                </ol>
+                <div class="callout"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#update"/></svg><span>Dalla versione 4.0 le notifiche arrivano anche quando l'app è completamente chiusa: se usi una versione più vecchia, aggiorna.</span></div>
+              </div>
+            </details>
+            <details id="promemoria">
+              <summary><span class="q">Come imposto i promemoria per compiti e verifiche?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Nelle Impostazioni di BCW attiva i promemoria e scegli l'orario: la sera prima di un compito o di una verifica ricevi una notifica. I compiti segnati come fatti non ti disturbano più, e puoi anche nasconderli.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Orario, widget e attività in diretta -->
+        <section class="topic" id="orario" data-topic>
+          <header>
+            <span class="shaped" style="--c: var(--surface-container-highest); --on-c: var(--primary)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#puffy"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#timetable"/></svg></span>
+            <h2>Orario, widget e attività in diretta</h2>
+            <p class="small">Su iPhone e iPad; nella build dell'App Store fanno parte di BCW+.</p>
+          </header>
+          <div class="faq">
+            <details id="scheda-orario">
+              <summary><span class="q">Non vedo la scheda Orario</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <ul>
+                  <li>Nella versione dell'App Store l'orario fa parte di <a href="#bcw-plus">BCW+</a>: senza, la scheda si può anche nascondere direttamente dalla barra.</li>
+                  <li>Se l'hai nascosta tu, riaccendila in <span class="path">Impostazioni › Orario</span>. Widget e attività in diretta funzionano anche con la scheda nascosta.</li>
+                </ul>
+              </div>
+            </details>
+            <details id="genera-orario">
+              <summary><span class="q">Come creo l'orario dalle lezioni registrate?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Nella scheda Orario tocca <strong>+</strong> e scegli la generazione dalle lezioni: BCW prepara una bozza dell'orario e te la mostra in anteprima prima di applicarla. Poi puoi aggiungere note, file, foto e intervalli e spostare gli eventi in <strong>Modifica orario</strong>.</p>
+                <p>Se compare «Non ci sono lezioni registrate nel periodo scelto», i docenti non hanno ancora firmato abbastanza lezioni: riprova più avanti o scegli un periodo più lungo.</p>
+                <p>Puoi esportare e reimportare l'orario (con gli allegati) dalle Impostazioni, e con un account BCW si sincronizza da solo tra i dispositivi.</p>
+              </div>
+            </details>
+            <details id="widget">
+              <summary><span class="q">Come aggiungo i widget?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Tieni premuto uno spazio vuoto della schermata Home, poi <span class="path">Modifica › Aggiungi widget</span> e cerca BCW. Ci sono Orario, Lezione in corso, Compiti e verifiche, Prossima verifica e Media, anche per la schermata di blocco.</p>
+                <p>Tenendo premuto un widget, in <strong>Modifica widget</strong> scegli lo sfondo: predefinito, chiaro o scuro come iOS, o il colore del tema.</p>
+              </div>
+            </details>
+            <details id="widget-vuoti">
+              <summary><span class="q">I widget mi chiedono di accedere o di creare l'orario</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>I widget mostrano i dati che BCW ha preparato per loro: senza un account invitano ad accedere e senza orario invitano a crearlo. Apri BCW una volta dopo aver fatto l'accesso o creato l'orario e si aggiornano da soli.</p>
+                <p>Poi si aggiornano quando cambiano i dati nell'app e all'inizio e alla fine di ogni lezione. Se sembrano fermi, aprire BCW li rimette in pari.</p>
+              </div>
+            </details>
+            <details id="attivita">
+              <summary><span class="q">L'attività in diretta non parte, o il tempo si ferma</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <ul>
+                  <li><strong>Avvio automatico:</strong> in <span class="path">Impostazioni › Orario</span> scegli se farla partire da sola nei giorni di lezione: compare mezz'ora prima della prima lezione e sparisce dopo l'ultima.</li>
+                  <li><strong>A mano:</strong> il pulsante con il lucchetto sulla scheda in cima all'orario di oggi la avvia o la ferma. Se la fermi o la togli dalla schermata di blocco, quel giorno non riparte da sola.</li>
+                  <li><strong>Permessi:</strong> controlla che le attività in diretta siano consentite per BCW nelle Impostazioni di iOS.</li>
+                </ul>
+                <p>BCW aggiorna l'attività senza un server: quando l'app è aperta o in un aggiornamento in background concesso da iOS. Se l'app resta chiusa a lungo, il conto alla rovescia può fermarsi alla fine della lezione successiva; aprendo BCW si rimette in pari.</p>
+                <p>Se iOS non accetta l'attività o la chiude appena avviata, BCW te lo dice con un avviso: riprova più tardi.</p>
+              </div>
+            </details>
+            <details id="verifiche-nascoste">
+              <summary><span class="q">Come nascondo una verifica dall'orario?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Le verifiche segnate dai docenti compaiono da sole sulla lezione della materia e si possono nascondere. Dal menu dell'orario, <strong>Verifiche nascoste</strong> raccoglie quelle nascoste (con il motivo) e le regole per nasconderle in automatico: per docente, materia, giorno della settimana, periodo o parole nel testo.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- BCW+ -->
+        <section class="topic" id="bcw-plus" data-topic>
+          <header>
+            <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#cookie9Sided"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#plus"/></svg></span>
+            <h2>BCW+ e acquisti</h2>
+            <p class="small">L'orario e i widget, per sempre.</p>
+          </header>
+          <div class="faq">
+            <details id="cosa-sblocca">
+              <summary><span class="q">Cosa sblocca BCW+, e quanto costa?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Nella versione dell'App Store BCW+ sblocca la scheda Orario, le attività in diretta e i widget, con un acquisto unico da 2,99 €: niente abbonamento, su tutti i tuoi dispositivi.</p>
+                <p>Tutto il resto di BCW resta gratuito: voti, agenda, bacheca, assenze, note e le altre funzioni. Si acquista dal banner in cima alle Impostazioni o dalla scheda Orario.</p>
+              </div>
+            </details>
+            <details id="ripristina">
+              <summary><span class="q">Ho cambiato iPhone o reinstallato BCW: come recupero BCW+?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Apri la schermata di BCW+ e tocca <strong>Ripristina acquisti</strong>, con lo stesso Apple ID con cui l'hai comprata. Se compare «Nessun acquisto di BCW+ trovato su questo Apple ID», controlla in quale Apple ID sei entrato nell'App Store.</p>
+              </div>
+            </details>
+            <details id="in-attesa">
+              <summary><span class="q">L'acquisto è «in attesa di approvazione»</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Succede con <strong>Chiedi di acquistare</strong> in In famiglia: l'acquisto deve essere approvato da un genitore. Appena è confermato, BCW+ si attiva da sola, anche se la schermata è ancora aperta.</p>
+              </div>
+            </details>
+            <details id="build-github">
+              <summary><span class="q">Devo comprare BCW+ se uso la build di GitHub?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>No: nella build di GitHub (l'IPA <code data-version="ios">BCW_v4.0.ipa</code> o quella che compili da te) tutte le funzioni sono sbloccate, gratis. BCW+ è il modo per sostenere lo sviluppo di BCW, un progetto indipendente e open source.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Account BCW -->
+        <section class="topic" id="account-bcw" data-topic>
+          <header>
+            <span class="shaped" style="--c: var(--secondary-container); --on-c: var(--on-secondary-container)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#puffy"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#cloud"/></svg></span>
+            <h2>Account BCW e sincronizzazione</h2>
+            <p class="small">Un solo accesso per tutti i tuoi account Classeviva, su ogni dispositivo.</p>
+          </header>
+          <div class="faq">
+            <details id="cosa-account">
+              <summary><span class="q">Cos'è un account BCW, e cosa si sincronizza?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Un account BCW (nome utente e password) vive sul server <a href="https://github.com/kubos5/BCW-api">BCW-api</a>. Ci abbini uno o più account Classeviva ed entri in tutti con un solo accesso, su ogni dispositivo e anche nella versione web.</p>
+                <p>Si sincronizzano le impostazioni (tranne blocco, promemoria, notifiche e Liquid Glass), l'aspetto e l'icona dell'app, i compiti fatti e l'orario di ogni account abbinato con i file allegati. In <span class="path">Impostazioni › Account › Da sincronizzare</span> scegli, per ogni dispositivo, cosa sincronizzare.</p>
+                <p>Lo crei dalla schermata di accesso (scegliendo <strong>Account BCW</strong>) o da <span class="path">Impostazioni › Account</span>, anche con un account Classeviva già aperto.</p>
+              </div>
+            </details>
+            <details id="password-dimenticata">
+              <summary><span class="q">Ho dimenticato la password dell'account BCW</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>L'account BCW non ha un'email, quindi la password non si può recuperare. Puoi però entrare con il tuo account Classeviva: in <span class="path">Impostazioni › Account</span> vedi a quali account BCW è abbinato e puoi scollegarti da ognuno, senza la password. Poi crea un nuovo account BCW e abbinaci di nuovo i tuoi account.</p>
+                <p>Se ricordi la password ma vuoi cambiarla, fallo dalle impostazioni dell'account: gli altri dispositivi vengono disconnessi.</p>
+              </div>
+            </details>
+            <details id="account-bloccato">
+              <summary><span class="q">L'accesso all'account BCW è bloccato, o la sessione è scaduta</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <ul>
+                  <li>Dopo 10 tentativi sbagliati in 15 minuti l'accesso a quell'account si blocca per il resto dei 15 minuti: aspetta e riprova.</li>
+                  <li>Una sessione scade dopo 180 giorni senza uso, e cambiare password chiude le altre sessioni: in quei casi BCW ti chiede di accedere di nuovo.</li>
+                  <li>Il nome utente va da 3 a 32 caratteri tra lettere minuscole, cifre, punto, trattino e trattino basso; la password ha almeno 8 caratteri.</li>
+                </ul>
+              </div>
+            </details>
+            <details id="scollegare">
+              <summary><span class="q">Come scollego un account Classeviva, o elimino l'account BCW?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Togliendo un account Classeviva dall'account BCW lo scolleghi, e dal server si cancellano anche il suo orario e i suoi file. Eliminando l'account BCW si cancella tutto. Uscendo dall'account BCW, gli account abbinati e i loro dati spariscono dal dispositivo e tornano quelli salvati sul dispositivo.</p>
+              </div>
+            </details>
+            <details id="server-bcw">
+              <summary><span class="q">Posso usare un mio server BCW?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Sì. BCW-api è un Cloudflare Worker con un database D1 e il piano gratuito di Cloudflare basta; gira anche con Node e SQLite. Una volta pubblicato, cambia l'indirizzo in <span class="path">Impostazioni › Account › Server BCW</span> (nella versione web anche da «Usa un altro server BCW» nella schermata di accesso). Le istruzioni sono nel <a href="https://github.com/kubos5/BCW-api">README di BCW-api</a>.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Voti e dati -->
+        <section class="topic" id="dati" data-topic>
+          <header>
+            <span class="shaped" style="--c: var(--tertiary-container); --on-c: var(--on-tertiary-container)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#flower"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#grades"/></svg></span>
+            <h2>Voti, compiti e dati</h2>
+            <p class="small">Medie, compiti, anni passati e uso offline.</p>
+          </header>
+          <div class="faq">
+            <details id="media-diversa">
+              <summary><span class="q">La media di BCW è diversa da quella di Classeviva</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Ci sono più modi di calcolare una media, e in BCW scegli tu quale usare nelle Impostazioni: <strong>media di tutti i voti</strong> o <strong>media delle medie</strong> delle materie, con o senza pesi. Prova a cambiare metodo: uno dei due corrisponde a quello della tua scuola. I voti che il docente ha segnato come «non fanno media» restano fuori dal calcolo.</p>
+              </div>
+            </details>
+            <details id="modulo-compiti">
+              <summary><span class="q">Non vedo i compiti assegnati con il modulo Compiti di Classeviva</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Dalla versione 4.0 i compiti assegnati con il nuovo modulo Compiti compaiono insieme a quelli dell'agenda. Se non li vedi, aggiorna BCW all'ultima versione.</p>
+              </div>
+            </details>
+            <details id="anni-passati">
+              <summary><span class="q">Dove trovo voti, assenze e pagelle degli anni passati?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>In <strong>Anni precedenti</strong> BCW scarica le pagelle dall'archivio di Classeviva. Voti, assenze e note degli anni passati non sono disponibili tramite le API, quindi per quelli BCW apre il sito di Classeviva in un browser integrato.</p>
+              </div>
+            </details>
+            <details id="offline">
+              <summary><span class="q">BCW funziona senza connessione?</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>Sì: le risposte di Classeviva restano salvate sul dispositivo, quindi offline vedi i dati dell'ultima volta che hai aperto l'app. Appena torna la connessione, BCW si aggiorna.</p>
+              </div>
+            </details>
+            <details id="icona">
+              <summary><span class="q">L'icona dell'app non cambia colore</span><span class="chev"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chevronDown"/></svg></span></summary>
+              <div class="answer">
+                <p>In <span class="path">Impostazioni › Aspetto › Icona dell'app</span> scegli il colore del tema o uno dei dieci colori. Il cambio è immediato; se iOS non risponde entro un secondo, un avviso in basso ti dice che il cambio è in corso. L'icona segue sempre lo stile chiaro, scuro, colorato o trasparente scelto in iOS.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <div class="empty" data-empty>
+          <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#ghostish"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#textSearch"/></svg></span>
+          <h2 class="headline">Nessun risultato</h2>
+          <p class="body">Prova con altre parole, oppure <a href="https://github.com/kubos5/BCW/issues/new">apri una issue su GitHub</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Codice -->
+    <section class="section tight" id="codice">
+      <div class="container">
+        <div class="section-head left reveal">
+          <span class="eyebrow"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#github"/></svg>Codice sorgente</span>
+          <h2 class="display">I repository</h2>
+          <p class="lead">BCW è open source con licenza MIT. Le funzioni nascono nell'app per iPhone e iPad e arrivano poi sul web e su Android.</p>
+        </div>
+        <div class="repos">
+          <article class="repo reveal">
+            <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#cookie9Sided"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#ios"/></svg></span>
+            <div class="copy">
+              <h3><code>kubos5/BCW</code><span class="chip pill primary mono" data-version="ios">v4.0</span></h3>
+              <p class="small">BCW per iPhone e iPad, in Swift e SwiftUI: il progetto principale, con widget, attività in diretta e BCW+.</p>
+              <div class="meta"><span class="chip">Swift</span><span class="chip">iOS 26+</span></div>
+              <div class="links">
+                <a class="btn text" href="https://github.com/kubos5/BCW"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#github"/></svg>Codice</a>
+                <a class="btn text" href="https://github.com/kubos5/BCW/releases"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#newReleases"/></svg>Release</a>
+                <a class="btn text" href="https://github.com/kubos5/BCW/issues"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#messageAlert"/></svg>Issue</a>
+              </div>
+            </div>
+          </article>
+          <article class="repo reveal" style="--d: 1">
+            <span class="shaped" style="--c: var(--secondary-container); --on-c: var(--on-secondary-container)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#sunny"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#globe"/></svg></span>
+            <div class="copy">
+              <h3><code>kubos5/BCW-web</code><span class="chip pill primary mono" data-version="web">v3.3.1</span></h3>
+              <p class="small">BCW per il web, in HTML e JavaScript senza dipendenze né compilazione, con un piccolo proxy per Classeviva.</p>
+              <div class="meta"><span class="chip">JavaScript</span><span class="chip">PWA</span></div>
+              <div class="links">
+                <a class="btn text" href="https://github.com/kubos5/BCW-web"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#github"/></svg>Codice</a>
+                <a class="btn text" href="https://kubos5.github.io/BCW-web/"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#externalLink"/></svg>Apri</a>
+                <a class="btn text" href="https://github.com/kubos5/BCW-web/issues"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#messageAlert"/></svg>Issue</a>
+              </div>
+            </div>
+          </article>
+          <article class="repo reveal">
+            <span class="shaped" style="--c: var(--tertiary-container); --on-c: var(--on-tertiary-container)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#clover8Leaf"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#android"/></svg></span>
+            <div class="copy">
+              <h3><code>kubos5/BCW-android</code><span class="chip pill primary mono" data-version="android">v3.3.1</span></h3>
+              <p class="small">BCW per Android, in Kotlin e Jetpack Compose, con il contributo di <a href="https://github.com/mikqsdev">mikqsdev</a>.</p>
+              <div class="meta"><span class="chip">Kotlin</span><span class="chip">Android 8.0+</span></div>
+              <div class="links">
+                <a class="btn text" href="https://github.com/kubos5/BCW-android"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#github"/></svg>Codice</a>
+                <a class="btn text" href="https://github.com/kubos5/BCW-android/releases"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#newReleases"/></svg>Release</a>
+                <a class="btn text" href="https://github.com/kubos5/BCW-android/issues"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#messageAlert"/></svg>Issue</a>
+              </div>
+            </div>
+          </article>
+          <article class="repo reveal" style="--d: 1">
+            <span class="shaped" style="--c: var(--surface-container-highest); --on-c: var(--primary)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#pentagon"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#api"/></svg></span>
+            <div class="copy">
+              <h3><code>kubos5/BCW-api</code></h3>
+              <p class="small">Il backend degli account BCW: un Cloudflare Worker con un database D1, che gira anche con Node e SQLite.</p>
+              <div class="meta"><span class="chip">JavaScript</span><span class="chip">Cloudflare Workers</span></div>
+              <div class="links">
+                <a class="btn text" href="https://github.com/kubos5/BCW-api"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#github"/></svg>Codice</a>
+                <a class="btn text" href="https://github.com/kubos5/BCW-api/issues"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#messageAlert"/></svg>Issue</a>
+              </div>
+            </div>
+          </article>
+          <article class="repo wide reveal">
+            <span class="shaped" style="--c: var(--primary-container)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#softBurst"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#dashboard"/></svg></span>
+            <div class="copy">
+              <h3><code>kubos5/BCW-lp</code></h3>
+              <p class="small">Questo sito: la pagina di BCW e il supporto, in HTML, CSS e JavaScript senza compilazione.</p>
+              <div class="links">
+                <a class="btn text" href="https://github.com/kubos5/BCW-lp"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#github"/></svg>Codice</a>
+                <a class="btn text" href="https://github.com/kubos5/BCW-lp/issues"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#messageAlert"/></svg>Issue</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Informazioni -->
+    <section class="section tight" id="informazioni">
+      <div class="container">
+        <div class="section-head left reveal">
+          <span class="eyebrow"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#info"/></svg>Informazioni</span>
+          <h2 class="display">Da sapere</h2>
+        </div>
+        <div class="info-grid">
+          <div class="card reveal">
+            <span class="shaped"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#cookie7Sided"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#checklist"/></svg></span>
+            <h3>Requisiti</h3>
+            <ul class="req-list">
+              <li><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#ios"/></svg><span><b>iPhone e iPad:</b> iOS e iPadOS 26 o successivi; per compilare, Xcode 26.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#android"/></svg><span><b>Android:</b> 8.0 o successivo; Live Updates da Android 16.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#globe"/></svg><span><b>Web:</b> una versione recente di Safari, Chrome, Edge o Firefox.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#school"/></svg><span><b>Account:</b> un account Classeviva di studente o genitore, oppure la demo.</span></li>
+            </ul>
+          </div>
+          <div class="card reveal" style="--d: 1">
+            <span class="shaped" style="--c: var(--secondary-container); --on-c: var(--on-secondary-container)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#gem"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#lock"/></svg></span>
+            <h3>Privacy</h3>
+            <ul class="req-list">
+              <li><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#key"/></svg><span>Senza account BCW le credenziali restano nel Portachiavi del dispositivo e vanno solo ai server di Classeviva.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#cloud"/></svg><span>Con un account BCW impostazioni, orario e file stanno sul server di BCW, e le credenziali di Classeviva sono cifrate con AES-256-GCM.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#widgets"/></svg><span>I widget ricevono solo un riassunto dei dati da mostrare, senza credenziali.</span></li>
+            </ul>
+          </div>
+          <div class="card reveal" style="--d: 2">
+            <span class="shaped" style="--c: var(--tertiary-container); --on-c: var(--on-tertiary-container)"><svg class="shape" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#heart"/></svg><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#volunteer"/></svg></span>
+            <h3>Il progetto</h3>
+            <ul class="req-list">
+              <li><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#favoriteFill"/></svg><span>BCW è di <a href="https://github.com/kubos5">kubos5</a>; <a href="https://github.com/mikqsdev">mikqsdev</a> contribuisce a BCW per Android.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#info"/></svg><span>BCW è un client non ufficiale e non è affiliata a Gruppo Spaggiari Parma S.p.A. Usa le stesse API dell'app ufficiale di Classeviva.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#sparkles"/></svg><span>Ispirata a <a href="https://github.com/Gabboxl/ClassevivaPCTO">ClassevivaPCTO</a>, il client per Windows.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARK: Segnala -->
+    <section class="section tight" style="padding-bottom: var(--section)">
+      <div class="container">
+        <div class="cta-panel reveal">
+          <svg class="shape decor spin" style="--period: 50s" viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/shapes.svg#cookie12Sided"/></svg>
+          <div class="copy">
+            <h2 class="headline">Non hai trovato la risposta?</h2>
+            <p>Apri una issue su GitHub. Per aiutare a risolverla in fretta, scrivi:</p>
+            <ul>
+              <li>la versione di BCW (in <span class="path">Impostazioni › Generale</span>) e il dispositivo;</li>
+              <li>cosa hai fatto, cosa ti aspettavi e cosa è successo, con il testo dell'errore;</li>
+              <li>se il problema c'è anche nella demo.</li>
+            </ul>
+            <p class="small" style="color: inherit; opacity: .85"><strong>Non scrivere mai password, codici o dati personali nelle issue:</strong> sono pubbliche.</p>
+          </div>
+          <a class="btn filled l" href="https://github.com/kubos5/BCW/issues/new"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#github"/></svg>Apri una issue</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <span class="logo big-logo" aria-label="BCW">BCW</span>
+          <p class="body tag">Better ClasseViVa: il client in Material 3 Expressive per il registro elettronico Classeviva. Fatto con cura da <a href="https://github.com/kubos5">kubos5</a>, con <a href="https://github.com/mikqsdev">mikqsdev</a> per BCW per Android.</p>
+        </div>
+        <div>
+          <h4>BCW</h4>
+          <ul>
+            <li><a href="../#funzioni">Funzioni</a></li>
+            <li><a href="../#temi">Temi</a></li>
+            <li><a href="../#plus">BCW+</a></li>
+            <li><a href="../#scarica">Scarica</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Codice</h4>
+          <ul>
+            <li><a href="https://github.com/kubos5/BCW"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#ios"/></svg>BCW per iOS</a></li>
+            <li><a href="https://github.com/kubos5/BCW-web"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#globe"/></svg>BCW per Web</a></li>
+            <li><a href="https://github.com/kubos5/BCW-android"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#android"/></svg>BCW per Android</a></li>
+            <li><a href="https://github.com/kubos5/BCW-api"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#api"/></svg>Backend</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Aiuto</h4>
+          <ul>
+            <li><a href="./">Supporto</a></li>
+            <li><a href="#problemi">Risoluzione dei problemi</a></li>
+            <li><a href="https://github.com/kubos5/BCW/issues">Segnala un problema</a></li>
+            <li><a href="https://github.com/kubos5/BCW/releases">Novità e versioni</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>BCW non è affiliata a Gruppo Spaggiari Parma S.p.A. Classeviva è un marchio dei rispettivi proprietari.</span>
+        <span>© 2026 kubos5 · <a href="https://github.com/kubos5/BCW/blob/main/LICENSE">Licenza MIT</a></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
