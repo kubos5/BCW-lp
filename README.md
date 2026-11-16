@@ -62,7 +62,7 @@ Ogni testo con una versione è marcato con `data-version="ios"`, `"android"` o `
 
 ### 2. Da controllare a mano
 
-- **Testo delle novità.** Nel supporto, la riga sotto "Novità di BCW …" descrive cosa porta la versione. Nella pagina principale, l'avviso in cima dice "sta arrivando su App Store": va cambiato se la novità è un'altra.
+- **Testo delle novità.** Nel supporto, la riga sotto "Novità di BCW …" descrive cosa porta la versione. Nella pagina principale, l'avviso in cima dice "arriva su App Store": va cambiato se la novità è un'altra.
 - **Funzioni nuove o cambiate.** Vanno aggiunte o corrette:
   - nella pagina principale: riquadri della sezione Funzioni, nastro delle funzioni sotto l'hero, Attività in diretta, Temi, domande;
   - nelle risposte del supporto (istruzioni, nomi dei menu, requisiti come "iOS 26 o successivi").

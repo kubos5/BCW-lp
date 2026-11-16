@@ -198,9 +198,13 @@ body {
   margin: 0;
   min-height: 100vh;
   background: var(--surface);
-  overflow-x: clip;
   transition: background-color var(--effects-dur) var(--effects);
 }
+
+/* Le forme che girano ai bordi non devono allargare la pagina: sui telefoni il browser
+   rimpicciolirebbe tutto. Il clip sta sui contenuti e non su html o body, perché lì passa alla
+   finestra e su iOS può bloccare lo scorrimento. */
+main, footer { overflow-x: clip; }
 
 img, svg, video { display: block; max-width: 100%; }
 img { height: auto; }
@@ -476,18 +480,13 @@ ul, ol { margin: 0; padding: 0; }
 .nav-item::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: currentColor; opacity: 0; transition: opacity var(--effects-fast-dur) linear; }
 .nav-item:hover::before { opacity: .08; }
 .nav-item:active { border-radius: 14px; }
-.nav-item .icon {
-  width: 0;
-  height: 22px;
-  margin-right: 0;
-  opacity: 0;
-  transform: scale(.3) rotate(-30deg);
-  transition: width var(--spring-dur) var(--spring), margin var(--spring-dur) var(--spring),
-    opacity var(--effects-dur) var(--effects), transform var(--spring-dur) var(--spring);
-}
+/* L'icona compare solo nella scheda attiva. Niente transizione sulla larghezza: Safari non
+   ridimensiona la pillola mentre un SVG cambia larghezza e il testo ne uscirebbe. */
+.nav-item .icon { display: none; width: 22px; height: 22px; margin-right: 8px; }
+@keyframes nav-icon-in { from { opacity: 0; transform: scale(.3) rotate(-30deg); } }
 /* Scheda attiva: pillola piena con l'icona, come la barra di navigazione flottante dell'app. */
 .nav-item.active { background: var(--primary); color: var(--on-primary); padding-left: 16px; }
-.nav-item.active .icon { width: 22px; margin-right: 8px; opacity: 1; transform: none; }
+.nav-item.active .icon { display: block; animation: nav-icon-in var(--spring-dur) var(--spring); }
 
 .topbar .only-mobile { display: none; }
 
@@ -499,13 +498,17 @@ ul, ol { margin: 0; padding: 0; }
   .actions-pill .icon-btn { width: 44px; height: 44px; }
   .topbar .only-mobile { display: inline-grid; }
   /* Sui telefoni la navigazione è la barra flottante in basso, come nell'app. */
+  /* left e right a 0 con margini automatici: con left: 50% lo spazio disponibile sarebbe metà
+     schermo e Safari stringerebbe le voci, facendo uscire il testo dalla pillola attiva. */
   .navbar {
     position: fixed;
-    left: 50%;
+    left: 0;
+    right: 0;
     bottom: calc(14px + env(safe-area-inset-bottom));
-    translate: -50% 0;
+    width: fit-content;
+    max-width: calc(100% - 20px);
+    margin-inline: auto;
     height: 64px;
-    max-width: calc(100vw - 20px);
   }
   .nav-item { padding: 0 13px; font-size: 14px; }
   .nav-item.active { padding-left: 12px; }
@@ -515,7 +518,7 @@ ul, ol { margin: 0; padding: 0; }
 }
 @media (max-width: 359px) {
   .nav-item { padding: 0 10px; font-size: 13px; }
-  .nav-item.active .icon { width: 0; margin-right: 0; opacity: 0; }
+  .nav-item.active .icon { display: none; }
 }
 
 /* Comparsa dei colori: la pagina parte in bianco e nero e i colori arrivano con un cerchio che si
@@ -1602,10 +1605,20 @@ mark { background: color-mix(in srgb, var(--tertiary-container) 85%, transparent
   .footer-grid > :first-child { grid-column: span 2; }
   .live-panel { border-radius: var(--r-xli); }
   .plus { border-radius: var(--r-xli); }
-  .plus-showcase .widget { --size: 136px; }
-  .widget-row .widget { --size: 136px; }
+  /* I widget restano quelli veri, solo rimpiccioliti: così i testi non vengono tagliati. */
+  .plus-showcase .widget, .widget-row .widget { --size: 158px; zoom: .86; }
   .widget-row .widget:nth-child(3) { display: none; }
   .big-island { width: 260px; }
+  .big-island .expanded { padding: 22px 20px; gap: 12px; }
+  .big-island .row { gap: 10px; }
+  .big-island .row .shaped { --s: 40px; }
+  .big-island .row .shaped b { font-size: 16px; }
+  .big-island .row .what strong { font-size: 18px; }
+  .big-island .row .what span { font-size: 12.5px; }
+  .big-island .row .left { font-size: 22px; }
+  .big-island .bar { font-size: 12px; gap: 8px; }
+  .big-island .next { font-size: 12.5px; text-align: center; }
+  .news-chip { gap: 8px; font-size: 14px; white-space: nowrap; }
   .faq summary { font-size: 16px; padding-left: 18px; }
   .answer, .answer.indent { padding: 0 18px 18px; }
   .backend-card { flex-direction: column; align-items: flex-start; }
