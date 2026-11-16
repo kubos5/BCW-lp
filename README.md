@@ -1,7 +1,12 @@
+
 <h1 align="center">BCW: Classeviva, in Material Design</h1>
 
 <p align="center">
-  <strong>La pagina di <a href="https://github.com/kubos5/BCW">BCW</a> e il suo supporto, in Material 3 Expressive</strong>
+  <strong>Un client per iOS, Android e Web per il registro elettronico <a href="https://web.spaggiari.eu">Classeviva</a> di Spaggiari</strong>
+</p>
+
+<p align="center">
+  BCW non è affiliata a Gruppo Spaggiari Parma S.p.A.
 </p>
 
 <p align="center">
@@ -9,11 +14,7 @@
   <a href="https://github.com/kubos5/BCW-web">BCW per Web</a> ·
   <a href="https://github.com/kubos5/BCW-android">BCW per Android</a> ·
   <a href="https://github.com/kubos5/BCW-api">Backend</a> ·
-  <strong><a href="https://github.com/kubos5/BCW-lp">Sito</a></strong>
-</p>
-
-<p align="center">
-  BCW non è affiliata a Gruppo Spaggiari Parma S.p.A.
+  <strong><a href="https://github.com/kubos5/BCW-lp">Landing Page</a></strong>
 </p>
 
 ---
