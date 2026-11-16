@@ -36,7 +36,9 @@ Poi apri http://localhost:8093. Serve un server (non `file://`) perché icone e 
 
 ## Pubblicazione
 
-Su GitHub Pages: Impostazioni › Pages › Deploy from a branch › `main`, cartella `/`. Il file `.nojekyll` evita l'elaborazione di Jekyll. Tutti i percorsi sono relativi, quindi il sito funziona anche in una sottocartella (`https://kubos5.github.io/BCW-lp/`) o con un dominio proprio; solo `og:image` è un indirizzo assoluto (da cambiare con un dominio diverso).
+Su GitHub Pages: Impostazioni › Pages › Deploy from a branch › `main`, cartella `/`, con il dominio `bcw.kubos5.com` (file `CNAME`, record DNS CNAME `bcw` → `kubos5.github.io`). Il vecchio indirizzo `kubos5.github.io/BCW-lp` reindirizza lì. Il file `.nojekyll` evita l'elaborazione di Jekyll.
+
+Tutti i percorsi sono relativi, quindi il sito funziona anche in una sottocartella o con un altro dominio. Gli unici indirizzi assoluti sono `og:image` (`https://bcw.kubos5.com/…`) e i link a BCW per il web (`https://app.bcw.kubos5.com/`), in entrambe le pagine: vanno cambiati se cambia il dominio.
 
 ## Nuova versione
 
