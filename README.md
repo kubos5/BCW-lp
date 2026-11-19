@@ -23,6 +23,7 @@
 
 - `index.html`: la pagina di BCW (funzioni, attività in diretta e widget, temi, BCW+, account BCW e server proprio, privacy, download, domande)
 - `support/index.html`: il supporto (`/support`), con ricerca, risoluzione dei problemi per argomento, repository e informazioni. Ogni risposta ha un indirizzo: `support/#altstore` apre quella risposta
+- `privacy/index.html`: l'informativa sulla privacy (`/privacy`, da indicare anche come URL della privacy policy su App Store Connect), con l'indice che segue la lettura
 
 HTML, CSS e JavaScript senza dipendenze né compilazione, come BCW-web: basta un qualsiasi hosting statico.
 
@@ -71,6 +72,7 @@ Ogni testo con una versione è marcato con `data-version="ios"`, `"android"` o `
 - **BCW+.** Se cambiano i testi della schermata di acquisto (`PlusPaywallView.swift`), vanno ricopiati nella sezione BCW+, insieme al prezzo se cambia.
 - **Screenshot.** Vanno rifatti solo se cambia l'aspetto dell'app: `tools/shoot-ios.sh` per l'app e `tools/webshot.mjs` per il web, poi `cwebp` (vedi Strumenti).
 - **Icone.** Se servono icone nuove: aggiungerle in `tools/icons.mjs` e rilanciarlo.
+- **Privacy.** Se cambia quali dati usano le app, BCW-web, il proxy o BCW-api (nuovi permessi, nuovi dati sincronizzati, nuovi servizi esterni), va aggiornata `privacy/index.html`, insieme alla data «Aggiornata il …» in cima.
 - **App Store.** Quando BCW sarà sull'App Store:
   - nella pagina principale, sostituire "In arrivo su App Store" con il link alla pagina dell'App Store nella scheda "iPhone e iPad", nell'hero e nella domanda "Quando arriva su App Store?";
   - aggiornare la nota sull'acquisto di BCW+ ("appena BCW sarà su App Store") e, nel supporto, l'avviso nella risposta su AltStore ("Appena BCW sarà sull'App Store…").
@@ -86,13 +88,14 @@ Ogni testo con una versione è marcato con `data-version="ios"`, `"android"` o `
 ## Struttura
 
 ```
-index.html, support/index.html
+index.html, support/index.html, privacy/index.html
 assets/
 ├── css/site.css          Design system (colori, tipografia, componenti) e tutte le sezioni
 ├── js/theme.js           Chiaro/scuro, colore d'accento, cerchio delle View Transitions, favicon
 ├── js/ui.js              Pezzi comuni: barra in alto, comparsa allo scorrimento, anello della media
 ├── js/site.js            Pagina principale
 ├── js/support.js         Ricerca e filtri del supporto
+├── js/privacy.js         Indice dell'informativa sulla privacy
 ├── js/vendor/            material-color-utilities (Apache 2.0), da BCW-web
 ├── icons.svg             Material Symbols Rounded (Apache 2.0), generato da tools/icons.mjs
 ├── shapes.svg            Forme di Material 3 Expressive, generato da tools/shapes.mjs
