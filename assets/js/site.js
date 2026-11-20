@@ -4,44 +4,21 @@
 import { ACCENTS, currentAccent, setAccent, nearestPreset, onThemeChange, iconColors, appIconSVG, loadColorLibrary } from './theme.js';
 import { initModeControls, initReveal, createRing, formatAverage, toneOf, reduceMotion } from './ui.js';
 
-const html = document.documentElement;
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
 // Ogni parte si avvia da sola: un errore in una non deve lasciare la pagina a metà (per esempio con
 // le sezioni ancora invisibili in attesa della comparsa allo scorrimento).
-for (const init of [initReveal, initModeControls, initIntro, initScrollSpy, initLive, initRings, initSimulator, initThemes, initCompare]) {
+for (const init of [initReveal, initModeControls, initIsland, initScrollSpy, initLive, initRings, initSimulator, initThemes, initCompare]) {
   try { init(); } catch (error) { console.error(error); }
 }
 
-// MARK: - Comparsa dei colori
+// MARK: - Isola
 
-/** Il cerchio dei colori parte dalla barra sotto "finalmente bello"; poi l'isola si allarga. */
-function initIntro() {
-  const origin = $('[data-intro-origin]');
+/** Poco dopo l'apertura l'isola sotto il titolo si allarga. */
+function initIsland() {
   const island = $('[data-hero-island]');
-  const intro = html.classList.contains('intro');
-  setTimeout(() => island?.classList.add('on'), intro ? 2300 : 900);
-  if (!intro) return;
-  setTimeout(async () => {
-    if (!document.startViewTransition || !origin) {
-      html.classList.add('intro-fade');
-      html.classList.remove('intro');
-      return;
-    }
-    const rect = origin.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.bottom;
-    const end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
-    const transition = document.startViewTransition(() => html.classList.remove('intro'));
-    try {
-      await transition.ready;
-      html.animate(
-        { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${end}px at ${x}px ${y}px)`] },
-        { duration: 1400, easing: 'cubic-bezier(.32, 0, .18, 1)', pseudoElement: '::view-transition-new(root)' },
-      );
-    } catch { /* transizione saltata: i colori sono già tornati */ }
-  }, 700);
+  setTimeout(() => island?.classList.add('on'), 900);
 }
 
 // MARK: - Navigazione

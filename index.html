@@ -19,8 +19,7 @@
   <link rel="preload" href="assets/fonts/GoogleSansFlex-latin-wght-ROND.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/site.css">
   <script>
-    // Prima del primo disegno: tema chiaro/scuro e colore scelti (salvati nel browser) e, alla prima
-    // visita della sessione, la comparsa dei colori con il cerchio (come nell'introduzione dell'app).
+    // Prima del primo disegno: tema chiaro/scuro e colore scelti (salvati nel browser).
     (function () {
       var d = document.documentElement;
       d.classList.remove('no-js');
@@ -33,10 +32,6 @@
           style.id = 'accent-theme';
           style.textContent = theme.css;
           document.head.appendChild(style);
-        }
-        if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !sessionStorage.getItem('bcw-lp.intro')) {
-          d.classList.add('intro');
-          sessionStorage.setItem('bcw-lp.intro', '1');
         }
       } catch (e) {}
     })();
@@ -76,7 +71,7 @@
             <span class="new">Novità</span> <span data-version="ios">BCW 4.0 arriva su App Store</span>
             <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevronRight"/></svg>
           </a>
-          <h1 class="display-xl">Il tuo registro, finalmente <span class="underlined" data-intro-origin>bello</span></h1>
+          <h1 class="display-xl">Il tuo registro, finalmente <span class="underlined">bello</span></h1>
           <p class="lead">BCW è il registro elettronico Classeviva ridisegnato: voti, compiti, verifiche, orario e comunicazioni in un'app veloce, chiara e bella da usare, in stile Material 3 Expressive.</p>
           <div class="cta-row">
             <a class="btn filled l" href="#scarica"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#download"/></svg>Scarica BCW</a>

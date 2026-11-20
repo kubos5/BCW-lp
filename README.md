@@ -80,7 +80,6 @@ Ogni testo con una versione è marcato con `data-version="ios"`, `"android"` o `
 ## Design
 
 - Colori, font e forme sono quelli dell'app e di BCW-web: palette Tonal Spot dal rosso mattone di BCW (`#A23E2F`), Google Sans Flex con l'asse ROND, MaterialShapes, molle di M3 Expressive (`linear()`), chiaro e scuro
-- La pagina parte in bianco e nero e i colori arrivano con un cerchio che si allarga dalla barra sotto il titolo, come nell'introduzione dell'app (una volta per sessione, non con le animazioni ridotte)
 - Nella sezione Temi si sceglie uno dei dieci colori dell'app (o uno a piacere): la pagina intera cambia tema con un cerchio che parte dal colore toccato (View Transitions), con i colori generati da `material-color-utilities` come in BCW-web; anche il favicon e l'icona di BCW seguono il tema. Tema e modalità chiara/scura restano salvati nel browser e valgono anche per il supporto
 - Lezione in corso (Dynamic Island, schermata di blocco, widget) che scorre davvero attorno all'ora attuale, simulatore "E se prendessi…" con l'anello ondulato della media (stessa geometria di `RingShape` dell'app), confronto Material 3 Expressive / Liquid Glass
 - I testi di BCW+ sono quelli della schermata di acquisto dell'app (`PlusPaywallView.swift`)
